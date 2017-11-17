@@ -63,9 +63,9 @@ namespace PemiraClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap face_09 {
+        internal static System.Drawing.Bitmap choose_1 {
             get {
-                object obj = ResourceManager.GetObject("face_09", resourceCulture);
+                object obj = ResourceManager.GetObject("choose_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,79 @@ namespace PemiraClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap face_PNG5646 {
+        internal static System.Drawing.Bitmap choose_2 {
             get {
-                object obj = ResourceManager.GetObject("face_PNG5646", resourceCulture);
+                object obj = ResourceManager.GetObject("choose_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap clarification_1 {
+            get {
+                object obj = ResourceManager.GetObject("clarification_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap clarification_1_2 {
+            get {
+                object obj = ResourceManager.GetObject("clarification_1_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap clarification_2 {
+            get {
+                object obj = ResourceManager.GetObject("clarification_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap clarification_2_1 {
+            get {
+                object obj = ResourceManager.GetObject("clarification_2_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap clarification_abstain {
+            get {
+                object obj = ResourceManager.GetObject("clarification_abstain", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap instruction_k3m {
+            get {
+                object obj = ResourceManager.GetObject("instruction_k3m", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap instruction_mwa_wm {
+            get {
+                object obj = ResourceManager.GetObject("instruction_mwa_wm", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +173,9 @@ namespace PemiraClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap m_01_32__gr {
+        internal static System.Drawing.Bitmap options {
             get {
-                object obj = ResourceManager.GetObject("m_01_32__gr", resourceCulture);
+                object obj = ResourceManager.GetObject("options", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +183,9 @@ namespace PemiraClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap MOST_BEAUTIFUL_FACES {
+        internal static System.Drawing.Bitmap thankyou {
             get {
-                object obj = ResourceManager.GetObject("MOST_BEAUTIFUL_FACES", resourceCulture);
+                object obj = ResourceManager.GetObject("thankyou", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +193,9 @@ namespace PemiraClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rexfeatures_5550767em_large_trans__QJoTHvv9hWAiaCwwE8274nuY336Pi7lpxqorZxKT9NA {
+        internal static System.Drawing.Bitmap welcome {
             get {
-                object obj = ResourceManager.GetObject("rexfeatures_5550767em_large_trans__QJoTHvv9hWAiaCwwE8274nuY336Pi7lpxqorZxKT9NA", resourceCulture);
+                object obj = ResourceManager.GetObject("welcome", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
