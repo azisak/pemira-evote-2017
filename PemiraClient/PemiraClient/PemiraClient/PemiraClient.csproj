@@ -53,6 +53,12 @@
     <Compile Include="DialogPassword.Designer.cs">
       <DependentUpon>DialogPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="InvalidRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvalidRequest.Designer.cs">
+      <DependentUpon>InvalidRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,8 +70,12 @@
     <EmbeddedResource Include="DialogPassword.resx">
       <DependentUpon>DialogPassword.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InvalidRequest.resx">
+      <DependentUpon>InvalidRequest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -110,6 +120,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\rexfeatures_5550767em-large_trans++QJoTHvv9hWAiaCwwE8274nuY336Pi7lpxqorZxKT9NA.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2 intruksi wma wm.jpg" />
+    <None Include="Resources\1 selamat datang.jpg" />
+    <None Include="Resources\selamat-datang.bmp" />
+    <None Include="Resources\2 intruksi.jpg" />
+    <None Include="Resources\3 Surat suara b.jpg" />
+    <None Include="Resources\4 pilih titan b.jpg" />
+    <None Include="Resources\4 pilih wali b.jpg" />
+    <None Include="Resources\5 validasi titan.jpg" />
+    <None Include="Resources\5 validasi wali.jpg" />
+    <None Include="Resources\6 validasi golput.jpg" />
+    <None Include="Resources\7 terima kasih.jpg" />
+    <None Include="Resources\proxy%27s password.PNG" />
+    <None Include="Resources\5 validasi titan 1.jpg" />
+    <None Include="Resources\5 validasi wali 1.jpg" />
+    <Content Include="Resources\selamat-datang.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

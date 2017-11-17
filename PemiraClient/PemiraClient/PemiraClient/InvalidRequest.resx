@@ -117,47 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Logo_Keluarga_Mahasiswa_ITB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Logo Keluarga Mahasiswa ITB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Logo_Pemira_KM_ITB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Logo Pemira KM ITB.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="instruction_mwa_wm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\2 intruksi wma wm.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="welcome" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\1 selamat datang.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="instruction_k3m" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\2 intruksi.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="options" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\3 Surat suara b.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="choose_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\4 pilih titan b.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="choose_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\4 pilih wali b.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="clarification_abstain" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\6 validasi golput.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="clarification_1_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\5 validasi wali.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="thankyou" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\7 terima kasih.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="clarification_2_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\5 validasi titan.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="clarification_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\5 validasi wali 1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="clarification_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\5 validasi titan 1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>
