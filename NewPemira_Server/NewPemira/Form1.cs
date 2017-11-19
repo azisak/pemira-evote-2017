@@ -15,11 +15,30 @@ namespace NewPemira
 
         const int MAX_QUEUE_BILIK_1 = 2;
         const int MAX_QUEUE_BILIK_2 = 2;
+        const int N_PASSWORD = 5;
+        List<string> password = new List<string>();
 
         public Form1()
         {
             InitializeComponent();
             updateBtnStats();
+            /*
+            // Check if password already inputted
+            // For testing, assumed password not implemented
+            for (int i = 1; i <= N_PASSWORD; i++)
+            {
+                InputPassword ip = new InputPassword(i);
+                ip.ShowDialog();
+                password.Add(ip.Pass);
+            }
+
+            // Print to console the password inputted
+            int idx = 1;
+            foreach (var password in password)
+            {
+                Console.WriteLine("Input pwd "+ idx++ +": " + password);
+            }*/
+
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -110,6 +129,7 @@ namespace NewPemira
                     // else put into waiting list
                 else 
                 {
+                    
                     listViewWL.Items.Add(item);
                 }
                 

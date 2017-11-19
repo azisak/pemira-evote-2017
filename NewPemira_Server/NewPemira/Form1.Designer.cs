@@ -277,7 +277,8 @@
             // 
             // expKotakSuara
             // 
-            this.expKotakSuara.Location = new System.Drawing.Point(7, 39);
+            this.expKotakSuara.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expKotakSuara.Location = new System.Drawing.Point(7, 37);
             this.expKotakSuara.Name = "expKotakSuara";
             this.expKotakSuara.Size = new System.Drawing.Size(113, 52);
             this.expKotakSuara.TabIndex = 7;
@@ -286,7 +287,7 @@
             // 
             // btnExportDP
             // 
-            this.btnExportDP.Location = new System.Drawing.Point(204, 39);
+            this.btnExportDP.Location = new System.Drawing.Point(336, 37);
             this.btnExportDP.Name = "btnExportDP";
             this.btnExportDP.Size = new System.Drawing.Size(113, 52);
             this.btnExportDP.TabIndex = 8;
@@ -295,11 +296,12 @@
             // 
             // btnExpPerProdi
             // 
-            this.btnExpPerProdi.Location = new System.Drawing.Point(324, 39);
+            this.btnExpPerProdi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExpPerProdi.Location = new System.Drawing.Point(126, 37);
             this.btnExpPerProdi.Name = "btnExpPerProdi";
             this.btnExpPerProdi.Size = new System.Drawing.Size(113, 52);
             this.btnExpPerProdi.TabIndex = 9;
-            this.btnExpPerProdi.Text = "Export DP per Prodi";
+            this.btnExpPerProdi.Text = "Export Kotak Suara Per Prodi";
             this.btnExpPerProdi.UseVisualStyleBackColor = true;
             // 
             // panel4
