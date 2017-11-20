@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,6 +18,12 @@ namespace NewPemira
         const int MAX_QUEUE_BILIK_2 = 2;
         const int N_PASSWORD = 5;
         List<string> password = new List<string>();
+
+        const string myIp = "169.254.1.2";
+        const int port1 = 13514;
+        const int port2 = 13515;
+        MyListener list1;
+        MyListener list2;
 
         public Form1()
         {
@@ -39,11 +46,15 @@ namespace NewPemira
                 Console.WriteLine("Input pwd "+ idx++ +": " + password);
             }*/
 
+            list1 = new MyListener(myIp, port1);
+            list2 = new MyListener(myIp, port2);
+
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(0);
+            //Application.Exit();
         }
 
 
@@ -228,83 +239,159 @@ namespace NewPemira
             
         }
 
+        private void enableGrantBilik(int id)
+        {
+            if (id == 1)
+            {
+                btnGrantAccBlk1.Enabled = true;
+            } else // id == 2
+            {
+                btnGrantAccBlk2.Enabled = true;
+            }
+        }
+        private void disableGrantBilik(int id)
+        {
+            if (id == 1)
+            {
+                btnGrantAccBlk1.Enabled = false;
+            }
+            else // id == 2
+            {
+                btnGrantAccBlk2.Enabled = false;
+            }
+        }
+
+        private void removeTopList(int id)
+        {
+            if (id == 1)
+            {
+                listViewBlk1.Items[0].Remove();
+            } else // id == 2
+            {
+                listViewBlk2.Items[0].Remove();
+            }
+        }
+
+        private void processNIMBilik_1(Object _nim)
+        {
+            Action<int> disableGrant = disableGrantBilik;
+            Action<int> enableGrant = enableGrantBilik;
+            Action<int> remTop = removeTopList;
+            Action updBtn = updateBtnStats;
+            Invoke(disableGrant, 1);
+            string nim = (string)_nim;
+            string msg;
+
+            if (!list1.checkOK())
+            {
+                list1.startServer();
+            }
+            try
+            {
+                list1.sendMsg(nim);
+                Thread.Sleep(500);
+                msg = list1.getMsg();
+                Console.WriteLine("Message received : " + msg);
+                // TODO update database 
+                // kemungkinan 1,2 / 1,2
+                String[] tokens = msg.Split(',');
+                Console.WriteLine("Pref1 : " + tokens[0] + " Pref2 : " + tokens[1]);
+                Invoke(remTop, 1);
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Coba lagi");
+                Console.WriteLine("Error : " + ex.StackTrace);
+            } finally
+            {
+                Invoke(enableGrant, 1);
+                Invoke(updBtn);
+            }
+                
+        }
+
+        private void processNIMBilik_2(Object _nim)
+        {
+            Action<int> disableGrant = disableGrantBilik;
+            Action<int> enableGrant = enableGrantBilik;
+            Action<int> remTop = removeTopList;
+            Action updBtn = updateBtnStats;
+            Invoke(disableGrant, 2);
+            string nim = (string)_nim;
+            string msg;
+
+            if (!list2.checkOK())
+            {
+                list2.startServer();
+            }
+            try
+            {
+                list2.sendMsg(nim);
+                Thread.Sleep(500);
+                msg = list2.getMsg();
+                Console.WriteLine("Message received : " + msg);
+                // TODO update database 
+                // kemungkinan 1,2 / 1,x / dst
+                String[] tokens = msg.Split(',');
+                Console.WriteLine("Pref1 : " + tokens[0] + " Pref2 : " + tokens[1]);
+                Invoke(remTop, 2);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Coba lagi");
+                Console.WriteLine("Error : " + ex.StackTrace);
+            }
+            finally
+            {
+                Invoke(enableGrant, 2);
+                Invoke(updBtn);
+            }
+
+        }
+
         private void btnGrantAccBlk1_Click(object sender, EventArgs e)
         {
             const string errQueueEmpty = "MAAF TIDAK BISA DIPROSES KARENA ANTRIAN KOSONG :(";
-            const string errCannotConnect = "MAAF TIDAK BISA TERHUBUNG DENGAN BILIK 1 :(";
-            bool canConnect = true;
-            bool isEmpty = false;
-            try
+            const string errCannotConnect = "TERDAPAT MASALAH SAAT TERHUBUNG DENGAN BILIK 1 :(";
+            // Check wheter bilik is empty or not
+            if (listViewBlk1.Items.Count == 0)
             {
-                // Check Connection  to client goes here
-            } catch
-                // Update canConnect var if can't connect
-                //canConnect = false;
-            {
-
-            } finally
-            {
-                // Whether can or can't connect do below
-                if (listViewBlk1.Items.Count == 0)
-                {
-                    isEmpty = true;
-                }
-            }
-
-            if (canConnect && !isEmpty)
-            {
-                // send data to client goes here
+                    MessageBox.Show(errQueueEmpty);
             } else
             {
-                if (!canConnect)
+                try
+                {
+                    Thread trd = new Thread(processNIMBilik_1);
+                    trd.Start(listViewBlk1.Items[0].Text);
+                } catch(Exception ex)
                 {
                     MessageBox.Show(errCannotConnect);
-                }
-                if (isEmpty)
-                {
-                    MessageBox.Show(errQueueEmpty);
+                    Console.WriteLine(ex.StackTrace);
                 }
             }
+            
+            
         }
 
         private void btnGrantAccBlk2_Click(object sender, EventArgs e)
         {
             const string errQueueEmpty = "MAAF TIDAK BISA DIPROSES KARENA ANTRIAN KOSONG :(";
-            const string errCannotConnect = "MAAF TIDAK BISA TERHUBUNG DENGAN BILIK 2 :(";
-            bool canConnect = true;
-            bool isEmpty = false;
-            try
+            const string errCannotConnect = "TERDAPAT MASALAH SAAT TERHUBUNG DENGAN BILIK 2 :(";
+            // Check wheter bilik is empty or not
+            if (listViewBlk2.Items.Count == 0)
             {
-                // Check Connection  to client goes here
-            }
-            catch
-            // Update canConnect var if can't connect
-            //canConnect = false;
-            {
-
-            }
-            finally
-            {
-                // Whether can or can't connect do below
-                if (listViewBlk2.Items.Count == 0)
-                {
-                    isEmpty = true;
-                }
-            }
-
-            if (canConnect && !isEmpty)
-            {
-                // send data to client goes here
+                MessageBox.Show(errQueueEmpty);
             }
             else
             {
-                if (!canConnect)
+                try
+                {
+                    Thread trd = new Thread(processNIMBilik_2);
+                    trd.Start(listViewBlk2.Items[0].Text);
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show(errCannotConnect);
-                }
-                if (isEmpty)
-                {
-                    MessageBox.Show(errQueueEmpty);
+                    Console.WriteLine(ex.StackTrace);
                 }
             }
         }
