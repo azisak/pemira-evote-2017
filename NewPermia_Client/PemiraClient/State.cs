@@ -30,6 +30,12 @@ namespace PemiraClient
 
         private const int MAX_ITERATION = 1;
 
+        private const char KEY_1 = 'q';
+        private const char KEY_2 = 'p';
+
+        private const char VAL_1 = '1';
+        private const char VAL_2 = '2';
+
         private int keypress;
         private int state;
         private int iteration;
@@ -74,37 +80,43 @@ namespace PemiraClient
                         if (keypress == ENTER_KEY) switchState(FIRST_PREF_OPTIONS);
                         break;
                     case FIRST_PREF_OPTIONS:
-                        if (keypress == '1') switchState(SECOND_PREF_1_CHOSEN);
-                        else if (keypress == '2') switchState(SECOND_PREF_2_CHOSEN);
+                        if (keypress == KEY_1)
+                        {
+                            decision[0] = VAL_1;
+                            switchState(SECOND_PREF_1_CHOSEN);
+                        }
+                        else if (keypress == KEY_2)
+                        {
+                            decision[0] = VAL_2;
+                            switchState(SECOND_PREF_2_CHOSEN);
+                        }
                         break;
                     case SECOND_PREF_1_CHOSEN:
-                        decision[0] = '1';
-                        if (iteration >= MAX_ITERATION && keypress == '2' || keypress == '1')
+                        if (iteration >= MAX_ITERATION && (keypress == KEY_2 || keypress == KEY_1))
                         {
-                            if (keypress == '2') decision[1] = '2';
+                            if (keypress == KEY_2) decision[1] = VAL_2;
                             switchState(THANKYOU);
                         }
-                        else if (keypress == '1') 
+                        else if (keypress == KEY_1) 
                             switchState(CONFIRMATION_1_ONLY);
-                        else if (keypress == '2')
+                        else if (keypress == KEY_2)
                         {
-                            decision[1] = '2';
+                            decision[1] = VAL_2;
                             switchState(CONFIRMATION_1_OVER_2);
                         }
                         break;
                     case SECOND_PREF_2_CHOSEN:
-                        decision[0] = '2';
-                        if (iteration >= MAX_ITERATION && keypress == '2' || keypress == '1')
+                        if (iteration >= MAX_ITERATION && (keypress == KEY_2 || keypress == KEY_1))
                         {
-                            if (keypress == '1') decision[1] = '1';
+                            if (keypress == KEY_1) decision[1] = VAL_1;
                             switchState(THANKYOU);
                         }
-                        else if (keypress == '1')
+                        else if (keypress == KEY_1)
                         {
-                            decision[1] = '1';
+                            decision[1] = VAL_1;
                             switchState(CONFIRMATION_2_OVER_1);
                         }
-					    else if (keypress == '2')
+					    else if (keypress == KEY_2)
                             switchState(CONFIRMATION_2_ONLY);
 					    break;
 				    case CONFIRMATION_1_ONLY:
@@ -134,8 +146,11 @@ namespace PemiraClient
 
         private void clarifyDecision(int keypress)
         {
-            iteration++;
-            if (keypress == BACKSPACE_KEY) switchState(FIRST_PREF_OPTIONS);
+            if (keypress == BACKSPACE_KEY)
+            {
+                iteration++;
+                switchState(FIRST_PREF_OPTIONS);
+            }
             else if (keypress == ENTER_KEY) switchState(THANKYOU);
         }
 
@@ -143,6 +158,14 @@ namespace PemiraClient
         {
             changeBg(stateCode);
             state = stateCode;
+        }
+
+        public void invalidate()
+        {
+            iteration = 0;
+
+            decision[0] = 'X';
+            decision[1] = 'X';
         }
 
         private void changeBg(int stateCode)

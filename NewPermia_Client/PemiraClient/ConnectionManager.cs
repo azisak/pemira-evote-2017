@@ -22,11 +22,12 @@ namespace PemiraClient
             client.Connect(ipAddr, port);
             Console.WriteLine("Connected.");
 
-            try
-            {
+            try {
                 clientStream = client.GetStream();
-            } catch(IOException exp)
-            {}
+            } catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
         }
 
         public bool send(string msg)
@@ -41,6 +42,11 @@ namespace PemiraClient
             clientStream.Read(msgBytes, 0, MAX_RECV_BUFFER);
             Console.WriteLine("NIM : " + System.Text.Encoding.ASCII.GetString(msgBytes));
             return System.Text.Encoding.ASCII.GetString(msgBytes);
+        }
+
+        public void cancel()
+        {
+            client.Close();
         }
     }
 }

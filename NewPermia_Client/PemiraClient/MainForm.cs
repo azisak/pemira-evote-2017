@@ -18,8 +18,8 @@ namespace PemiraClient
         private static State state;
         private ConnectionManager connectionManager;
 
-        private const string IP_ADDRESS = "169.254.1.2";
-        private const int PORT_NUMBER = 13515;
+        private string IP_ADDRESS;
+        private int PORT_NUMBER;
 
         private Point topCenter = new Point(603, 181);
         private Point rightBottom = new Point(1153, 442);
@@ -27,6 +27,10 @@ namespace PemiraClient
         public MainForm()
         {
             InitializeComponent();
+            portfom pf = new portfom();
+            pf.ShowDialog();
+            IP_ADDRESS = pf.IpAddr;
+            PORT_NUMBER = pf.Port;
 
             StartPosition = FormStartPosition.CenterScreen;
 
@@ -35,11 +39,6 @@ namespace PemiraClient
             label_timer_options_2.Visible = false;
 
             state = new State(BackgroundContainer);
-            connectionManager = new ConnectionManager(IP_ADDRESS, PORT_NUMBER);
-
-            string message = connectionManager.recv();
-
-            label_NIM.Text = message;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -57,79 +56,106 @@ namespace PemiraClient
             label_timer_overview.Location = point;
         }
 
+        private void _setLabelText(Label label, string text)
+        {
+            label.Text = text;
+        }
+
         private void proccessState()
         {
-            int prevState = State.WELCOME;
+            
             Action<Label, bool> showLabel = _showLabel;
             Action<Point> setTimerLocation = _setTimerLocation;
+            Action<Label, string> setLabelText = _setLabelText;
 
+            connectionManager = new ConnectionManager(IP_ADDRESS, PORT_NUMBER);
             while (true)
             {
-                state.updateState();
-                int currentState = state.getStateCode();
-                if (prevState != currentState)
+                state.switchState(State.WELCOME);
+                int prevState = State.WELCOME;
+
+                Invoke(showLabel, hub_operator, true);
+
+                string nim = connectionManager.recv();
+
+                Invoke(showLabel, hub_operator, false);
+
+                Invoke(setLabelText, label_NIM, nim);
+                Invoke(showLabel, label_NIM, true);
+
+                bool sessionExpired = false;
+                while (!sessionExpired)
                 {
-                    switch(state.getStateCode())
+                    state.updateState();
+                    int currentState = state.getStateCode();
+                    if (prevState != currentState)
                     {
-                        case State.INSTRUCTION:
-                            Invoke(showLabel, label_NIM, false);
-                            break;
-                        case State.FIRST_PREF_OPTIONS:
-                            new Thread(triggerTimerInOptions).Start();
-                            Invoke(showLabel, label_timer_options_1, true);
-                            Invoke(showLabel, label_timer_options_2, false);
-                            Invoke(showLabel, label_timer_overview, false);
-                            break;
-                        case State.SECOND_PREF_1_CHOSEN:
-                            new Thread(triggerTimerInOptions2).Start();
-                            Invoke(showLabel, label_timer_options_1, false);
-                            Invoke(showLabel, label_timer_options_2, true);
-                            break;
-                        case State.SECOND_PREF_2_CHOSEN:
-                            new Thread(triggerTimerInOptions2).Start();
-                            Invoke(showLabel, label_timer_options_1, false);
-                            Invoke(showLabel, label_timer_options_2, true);
-                            break;
-                        case State.CONFIRMATION_1_OVER_2:
-                            new Thread(triggerTimerInOverview).Start();
-                            Invoke(showLabel, label_timer_options_2, false);
-                            Invoke(setTimerLocation, rightBottom);
-                            Invoke(showLabel, label_timer_overview, true);
-                            break;
-                        case State.CONFIRMATION_2_OVER_1:
-                            new Thread(triggerTimerInOverview).Start();
-                            Invoke(showLabel, label_timer_options_2, false);
-                            Invoke(setTimerLocation, rightBottom);
-                            Invoke(showLabel, label_timer_overview, true);
-                            break;
-                        case State.CONFIRMATION_1_ONLY:
-                            new Thread(triggerTimerInOverview).Start();
-                            Invoke(showLabel, label_timer_options_2, false);
-                            Invoke(setTimerLocation, rightBottom);
-                            Invoke(showLabel, label_timer_overview, true);
-                            break;
-                        case State.CONFIRMATION_2_ONLY:
-                            new Thread(triggerTimerInOverview).Start();
-                            Invoke(showLabel, label_timer_options_2, false);
-                            Invoke(setTimerLocation, rightBottom);
-                            Invoke(showLabel, label_timer_overview, true);
-                            break;
-                        case State.CONFIRMATION_ABSTAIN:
-                            new Thread(triggerTimerInOverview).Start();
-                            Invoke(showLabel, label_timer_options_1, false);
-                            Invoke(showLabel, label_timer_options_2, false);
-                            Invoke(setTimerLocation, topCenter);
-                            Invoke(showLabel, label_timer_overview, true);
-                            break;
-                        case State.THANKYOU:
-                            Invoke(showLabel, label_timer_overview, false);
-                            Invoke(showLabel, label_timer_options_2, false);
-                            connectionManager.send(state.getDecision(0) + "," + state.getDecision(1));
-                            Console.WriteLine(">>>>>>>> " + state.getDecision(0) + "," + state.getDecision(1));
-                            break;
+                        switch(state.getStateCode())
+                        {
+                            case State.INSTRUCTION:
+                                Invoke(showLabel, label_NIM, false);
+                                break;
+                            case State.FIRST_PREF_OPTIONS:
+                                new Thread(triggerTimerInOptions).Start();
+                                Invoke(showLabel, label_timer_options_1, true);
+                                Invoke(showLabel, label_timer_options_2, false);
+                                Invoke(showLabel, label_timer_overview, false);
+                                break;
+                            case State.SECOND_PREF_1_CHOSEN:
+                                new Thread(triggerTimerInOptions2).Start();
+                                Invoke(showLabel, label_timer_options_1, false);
+                                Invoke(showLabel, label_timer_options_2, true);
+                                break;
+                            case State.SECOND_PREF_2_CHOSEN:
+                                new Thread(triggerTimerInOptions2).Start();
+                                Invoke(showLabel, label_timer_options_1, false);
+                                Invoke(showLabel, label_timer_options_2, true);
+                                break;
+                            case State.CONFIRMATION_1_OVER_2:
+                                new Thread(triggerTimerInOverview).Start();
+                                Invoke(showLabel, label_timer_options_2, false);
+                                Invoke(setTimerLocation, rightBottom);
+                                Invoke(showLabel, label_timer_overview, true);
+                                break;
+                            case State.CONFIRMATION_2_OVER_1:
+                                new Thread(triggerTimerInOverview).Start();
+                                Invoke(showLabel, label_timer_options_2, false);
+                                Invoke(setTimerLocation, rightBottom);
+                                Invoke(showLabel, label_timer_overview, true);
+                                break;
+                            case State.CONFIRMATION_1_ONLY:
+                                new Thread(triggerTimerInOverview).Start();
+                                Invoke(showLabel, label_timer_options_2, false);
+                                Invoke(setTimerLocation, rightBottom);
+                                Invoke(showLabel, label_timer_overview, true);
+                                break;
+                            case State.CONFIRMATION_2_ONLY:
+                                new Thread(triggerTimerInOverview).Start();
+                                Invoke(showLabel, label_timer_options_2, false);
+                                Invoke(setTimerLocation, rightBottom);
+                                Invoke(showLabel, label_timer_overview, true);
+                                break;
+                            case State.CONFIRMATION_ABSTAIN:
+                                new Thread(triggerTimerInOverview).Start();
+                                Invoke(showLabel, label_timer_options_1, false);
+                                Invoke(showLabel, label_timer_options_2, false);
+                                Invoke(setTimerLocation, topCenter);
+                                Invoke(showLabel, label_timer_overview, true);
+                                break;
+                            case State.THANKYOU:
+                                Invoke(showLabel, label_timer_overview, false);
+                                Invoke(showLabel, label_timer_options_2, false);
+                                connectionManager.send(state.getDecision(0) + "," + state.getDecision(1));
+                                Console.WriteLine(">>>>>>>> " + state.getDecision(0) + "," + state.getDecision(1));
+                                Thread.Sleep(2000);
+                                sessionExpired = true;
+                                state.updateKeypress(-1);
+                                state.invalidate();
+                                break;
+                        }
                     }
+                    prevState = currentState;
                 }
-                prevState = currentState;
             }
         }
 
@@ -194,7 +220,6 @@ namespace PemiraClient
             }
 
             if (sure) state.switchState(State.THANKYOU);
-            //Invoke(showLabel, label_timer_overview, false);
         }
     }
 }

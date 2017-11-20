@@ -33,6 +33,7 @@
             this.label_timer_options_1 = new System.Windows.Forms.Label();
             this.BackgroundContainer = new System.Windows.Forms.PictureBox();
             this.label_timer_options_2 = new System.Windows.Forms.Label();
+            this.hub_operator = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.BackgroundContainer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,6 +95,18 @@
             this.label_timer_options_2.Text = "20";
             this.label_timer_options_2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // hub_operator
+            // 
+            this.hub_operator.BackColor = System.Drawing.Color.White;
+            this.hub_operator.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.hub_operator.Font = new System.Drawing.Font("Arial Rounded MT Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hub_operator.Location = new System.Drawing.Point(433, 406);
+            this.hub_operator.Name = "hub_operator";
+            this.hub_operator.Size = new System.Drawing.Size(430, 49);
+            this.hub_operator.TabIndex = 13;
+            this.hub_operator.Text = "HUBUNGI OPERATOR";
+            this.hub_operator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -101,6 +114,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(1300, 700);
             this.ControlBox = false;
+            this.Controls.Add(this.hub_operator);
             this.Controls.Add(this.label_timer_options_2);
             this.Controls.Add(this.label_timer_overview);
             this.Controls.Add(this.label_NIM);
@@ -123,6 +137,7 @@
         private System.Windows.Forms.Label label_timer_options_1;
         private System.Windows.Forms.PictureBox BackgroundContainer;
         private System.Windows.Forms.Label label_timer_options_2;
+        private System.Windows.Forms.Label hub_operator;
     }
 }
 
