@@ -13,7 +13,9 @@ namespace NewPemira
 {
     public partial class Form1 : Form
     {
-
+        DBDPTController dbDPT = new DBDPTController();
+        DBPasswordController dbPass = new DBPasswordController();
+        DBPilihanController dbPilihan = new DBPilihanController();
         const int MAX_QUEUE_BILIK_1 = 2;
         const int MAX_QUEUE_BILIK_2 = 2;
         const int N_PASSWORD = 5;
@@ -29,21 +31,33 @@ namespace NewPemira
         {
             InitializeComponent();
             updateBtnStats();
-            /*
             // Check if password already inputted
             // For testing, assumed password not implemented
-            for (int i = 1; i <= N_PASSWORD; i++)
+            if (dbPass.isTableEmpty())
             {
-                InputPassword ip = new InputPassword(i);
-                ip.ShowDialog();
-                password.Add(ip.Pass);
+                for (int i = 1; i <= N_PASSWORD; i++)
+                {
+                    InputPassword ip = new InputPassword(i);
+                    ip.ShowDialog();
+                    password.Add(ip.Pass);
+                }
+                if (!dbPass.addPassword(password))
+                {
+                    MessageBox.Show("Add Password Gagal");
+                }
+                // Print to console the password inputted
+                int idx = 1;
+                foreach (var password in password)
+                {
+                    Console.WriteLine("Input pwd " + idx++ + ": " + password);
+                }
             }
 
             // Print to console the password inputted
             int idx = 1;
             foreach (var password in password)
-            {
                 Console.WriteLine("Input pwd "+ idx++ +": " + password);
+            {
             }*/
 
             list1 = new MyListener(myIp, port1);
@@ -56,9 +70,6 @@ namespace NewPemira
             Environment.Exit(0);
             //Application.Exit();
         }
-
-
-
 
         // ===== NIM VALIDATION SECTION =====
         bool isAllNumber(string s)
@@ -398,6 +409,108 @@ namespace NewPemira
 
         // === END NIM VALIDATION SECTION ====
 
+        // === IMPORT AND EXPORT DATABASE === //
+        private void btnImportDP_Click(object sender, EventArgs e)
+        {
+            var fd = new System.Windows.Forms.OpenFileDialog();
+            fd.Filter = "CSV files (*.csv)|*.csv";
+            fd.InitialDirectory = System.Environment.CurrentDirectory;
+            fd.Title = "Please select file to import.";
+            if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string fileToOpen = fd.FileName;
+                if (dbDPT.importCSV(fileToOpen))
+                {
+                    MessageBox.Show("Data Berhasil di Import");
+                }
+            }
+        }
 
+        private void expKotakSuara_Click(object sender, EventArgs e)
+        {
+            ValidateExport validate = new ValidateExport();
+            validate.ShowDialog();
+            bool check = false;
+            if (!validate.getCancel())
+            {
+                check = dbPass.checkPassword(validate.getPassword());
+                if (check)
+                {
+                    var folder = new FolderBrowserDialog();
+                    //fd.InitialDirectory = System.Environment.CurrentDirectory;
+                    //fd.Title = "Please select file to import.";
+                    if (folder.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        string exportname = "K3MResults.csv";
+
+                        string selectedPath = folder.SelectedPath;
+                        string msg = "";
+                        string pathDp = selectedPath + @"\" + exportname;
+                        if (dbPilihan.exportCSVPilihanKM(pathDp))
+                        {
+                            msg += "Export Successful!\n";
+                            msg += "File Exported to: " + selectedPath + "\n";
+                            msg += "File name: " + exportname;
+                        }
+                        MessageBox.Show(msg);
+                    }
+                }
+            }
+        }
+
+        private void btnExpPerProdi_Click(object sender, EventArgs e)
+        {
+            ValidateExport validate = new ValidateExport();
+            validate.ShowDialog();
+            bool check = false;
+            if (!validate.getCancel())
+            {
+                check = dbPass.checkPassword(validate.getPassword());
+                if (check)
+                {
+                    var fd = new FolderBrowserDialog();
+                    //fd.InitialDirectory = System.Environment.CurrentDirectory;
+                    //fd.Title = "Please select file to import.";
+                    if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        string exportname = "K3MResultsTotal.csv";
+
+                        string selectedPath = fd.SelectedPath;
+                        string msg = "";
+                        string pathDp = selectedPath + @"\" + exportname;
+                        if (dbPilihan.exportCSVPilihanKM(pathDp))
+                        {
+                            msg += "Export Successful!\n";
+                            msg += "File Exported to: " + selectedPath + "\n";
+                            msg += "File name: " + exportname;
+                        }
+                        MessageBox.Show(msg);
+                    }
+                }
+            }
+        }
+
+        private void btnExportDP_Click(object sender, EventArgs e)
+        {
+            var fd = new FolderBrowserDialog();
+            //fd.InitialDirectory = System.Environment.CurrentDirectory;
+            //fd.Title = "Please select file to import.";
+            if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string exportDPname = "DPstatus.csv";
+
+                string selectedPath = fd.SelectedPath;
+                string msg = "";
+                string pathDp = selectedPath + @"\" + exportDPname;
+                if (dbDPT.exportCSVDP(pathDp))
+                {
+                    msg += "Export Successful!\n";
+                    msg += "File Exported to: " + selectedPath + "\n";
+                    msg += "File name: " + exportDPname;
+                }
+                MessageBox.Show(msg);
+            }
+        }
     }
+        // === IMPORT AND EXPORT DATABASE === //
 }
