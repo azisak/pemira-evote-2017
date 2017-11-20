@@ -84,10 +84,13 @@ namespace PemiraClient
                             if (keypress == '2') decision[1] = '2';
                             switchState(THANKYOU);
                         }
-                        else if (keypress == '1')
+                        else if (keypress == '1') 
                             switchState(CONFIRMATION_1_ONLY);
                         else if (keypress == '2')
+                        {
+                            decision[1] = '2';
                             switchState(CONFIRMATION_1_OVER_2);
+                        }
                         break;
                     case SECOND_PREF_2_CHOSEN:
                         decision[0] = '2';
@@ -97,7 +100,10 @@ namespace PemiraClient
                             switchState(THANKYOU);
                         }
                         else if (keypress == '1')
+                        {
+                            decision[1] = '1';
                             switchState(CONFIRMATION_2_OVER_1);
+                        }
 					    else if (keypress == '2')
                             switchState(CONFIRMATION_2_ONLY);
 					    break;

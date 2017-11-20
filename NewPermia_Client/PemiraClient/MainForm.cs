@@ -35,15 +35,15 @@ namespace PemiraClient
             label_timer_options_2.Visible = false;
 
             state = new State(BackgroundContainer);
-            //connectionManager = new ConnectionManager(IP_ADDRESS, PORT_NUMBER);
+            connectionManager = new ConnectionManager(IP_ADDRESS, PORT_NUMBER);
+
+            string message = connectionManager.recv();
+
+            label_NIM.Text = message;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //string message = connectionManager.recv();
-
-            //label_NIM.Text = message;
-
             new Thread(proccessState).Start();
         }
 
@@ -69,7 +69,6 @@ namespace PemiraClient
                 int currentState = state.getStateCode();
                 if (prevState != currentState)
                 {
-                    Console.WriteLine("state renewed");
                     switch(state.getStateCode())
                     {
                         case State.INSTRUCTION:
@@ -125,7 +124,7 @@ namespace PemiraClient
                         case State.THANKYOU:
                             Invoke(showLabel, label_timer_overview, false);
                             Invoke(showLabel, label_timer_options_2, false);
-                            //connectionManager.send(state.getDecision(0) + "," + state.getDecision(1));
+                            connectionManager.send(state.getDecision(0) + "," + state.getDecision(1));
                             Console.WriteLine(">>>>>>>> " + state.getDecision(0) + "," + state.getDecision(1));
                             break;
                     }

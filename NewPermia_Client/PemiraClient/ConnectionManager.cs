@@ -17,7 +17,7 @@ namespace PemiraClient
 
         public ConnectionManager(string ipAddr, int port)
         {
-            Console.WriteLine("Connecting ...");
+            Console.WriteLine("Connecting to " + ipAddr + ":" + port);
             client = new TcpClient();
             client.Connect(ipAddr, port);
             Console.WriteLine("Connected.");
@@ -38,6 +38,8 @@ namespace PemiraClient
         public string recv()
         {
             byte[] msgBytes = new byte[MAX_RECV_BUFFER];
+            clientStream.Read(msgBytes, 0, MAX_RECV_BUFFER);
+            Console.WriteLine("NIM : " + System.Text.Encoding.ASCII.GetString(msgBytes));
             return System.Text.Encoding.ASCII.GetString(msgBytes);
         }
     }
