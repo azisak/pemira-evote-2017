@@ -45,20 +45,14 @@ namespace NewPemira
                 {
                     MessageBox.Show("Add Password Gagal");
                 }
-                // Print to console the password inputted
-                int idx = 1;
-                foreach (var password in password)
-                {
-                    Console.WriteLine("Input pwd " + idx++ + ": " + password);
-                }
             }
 
             // Print to console the password inputted
             int idx = 1;
             foreach (var password in password)
-                Console.WriteLine("Input pwd "+ idx++ +": " + password);
             {
-            }*/
+                Console.WriteLine("Input pwd "+ idx++ +": " + password);
+            }
 
             list1 = new MyListener(myIp, port1);
             list2 = new MyListener(myIp, port2);
@@ -102,18 +96,18 @@ namespace NewPemira
             {
                 MessageBox.Show(errNIMNotNumber);
                 return false;
-            }/*
+            }
             // Validate NIM must found in DP
-            else if (!FoundAtDP(nim))
+            else if (!dbDPT.getDPT(nim))
             {
                 MessageBox.Show(errNIMNotFound);
                 return false;
             }
             // Validate NIM must not voted 
-            else if (!AlreadyVoted(nim) {
+            else if (!dbDPT.checkBelumPilih(nim)) {
                 MessageBox.Show(errNIMAlreadyVoted);
                 return false;
-            }*/
+            }
             else
             {
                 return true;
@@ -250,6 +244,30 @@ namespace NewPemira
             
         }
 
+        private void enableClearBilik(int id)
+        {
+            if (id == 1)
+            {
+                btnClearBlk1.Enabled = true;
+            }
+            else // id == 2
+            {
+                btnClearBlk2.Enabled = true;
+            }
+        }
+
+        private void disableClearBilik(int id)
+        {
+            if (id == 1)
+            {
+                btnClearBlk1.Enabled = false;
+            }
+            else // id == 2
+            {
+                btnClearBlk2.Enabled = false;
+            }
+        }
+
         private void enableGrantBilik(int id)
         {
             if (id == 1)
@@ -283,15 +301,31 @@ namespace NewPemira
             }
         }
 
+        private void setSudahPilih(string nim)
+        {
+            dbDPT.setSudahPilih(nim);
+        }
+
+        private void acceptVote(string prodi, string pil1, string pil2)
+        {
+            dbPilihan.tambahPilihanKM(prodi, pil1, pil2);
+        }
+
         private void processNIMBilik_1(Object _nim)
         {
+            Action<int> disableClear = disableClearBilik;
+            Action<int> enableClear = enableClearBilik;
             Action<int> disableGrant = disableGrantBilik;
             Action<int> enableGrant = enableGrantBilik;
             Action<int> remTop = removeTopList;
+            Action<string> setPilih = setSudahPilih;
+            Action<string, string, string> tambahPilihan = acceptVote;
             Action updBtn = updateBtnStats;
             Invoke(disableGrant, 1);
+            Invoke(disableClear, 1);
             string nim = (string)_nim;
             string msg;
+            Invoke(setPilih, nim);
 
             if (!list1.checkOK())
             {
@@ -306,6 +340,8 @@ namespace NewPemira
                 // TODO update database 
                 // kemungkinan 1,2 / 1,2
                 String[] tokens = msg.Split(',');
+                string prodi = nim.Substring(0, 3);
+                Invoke(tambahPilihan, prodi, tokens[0], tokens[1]);
                 Console.WriteLine("Pref1 : " + tokens[0] + " Pref2 : " + tokens[1]);
                 Invoke(remTop, 1);
             } catch (Exception ex)
@@ -315,20 +351,27 @@ namespace NewPemira
             } finally
             {
                 Invoke(enableGrant, 1);
+                Invoke(enableClear, 1);
                 Invoke(updBtn);
             }
-                
+        
         }
 
         private void processNIMBilik_2(Object _nim)
         {
+            Action<int> disableClear = disableClearBilik;
+            Action<int> enableClear = enableClearBilik;
             Action<int> disableGrant = disableGrantBilik;
             Action<int> enableGrant = enableGrantBilik;
             Action<int> remTop = removeTopList;
+            Action<string> setPilih = setSudahPilih;
+            Action<string, string, string> tambahPilihan = acceptVote;
             Action updBtn = updateBtnStats;
             Invoke(disableGrant, 2);
+            Invoke(disableClear, 2);
             string nim = (string)_nim;
             string msg;
+            Invoke(setPilih, nim);
 
             if (!list2.checkOK())
             {
@@ -343,6 +386,8 @@ namespace NewPemira
                 // TODO update database 
                 // kemungkinan 1,2 / 1,x / dst
                 String[] tokens = msg.Split(',');
+                string prodi = nim.Substring(0, 3);
+                Invoke(tambahPilihan, prodi, tokens[0], tokens[1]);
                 Console.WriteLine("Pref1 : " + tokens[0] + " Pref2 : " + tokens[1]);
                 Invoke(remTop, 2);
             }
@@ -354,6 +399,7 @@ namespace NewPemira
             finally
             {
                 Invoke(enableGrant, 2);
+                Invoke(enableClear, 2);
                 Invoke(updBtn);
             }
 
@@ -458,6 +504,7 @@ namespace NewPemira
             }
         }
 
+        // Belum di implementasi
         private void btnExpPerProdi_Click(object sender, EventArgs e)
         {
             ValidateExport validate = new ValidateExport();

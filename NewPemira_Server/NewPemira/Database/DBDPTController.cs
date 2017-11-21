@@ -63,7 +63,7 @@ namespace NewPemira
         */
         public bool getDPT(string nim)
         {
-            string query = "nim = '" + nim + "' and sudahpilih = '0'";
+            string query = "nim = '" + nim + "'";
             DataRow[] found = dptDT.Select(query);
             if (found.Length == 1)
             {
@@ -72,6 +72,20 @@ namespace NewPemira
             else
             {
                 return false;
+            }
+        }
+
+        public bool checkBelumPilih(string nim)
+        {
+            string query = "nim = '" + nim + "' and sudahpilih = '0'";
+            DataRow[] found = dptDT.Select(query);
+            if (found.Length == 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
