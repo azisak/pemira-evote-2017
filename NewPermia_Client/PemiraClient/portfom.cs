@@ -54,7 +54,5 @@ namespace PemiraClient
                 this.Close();
             }
         }
-
-        
     }
 }

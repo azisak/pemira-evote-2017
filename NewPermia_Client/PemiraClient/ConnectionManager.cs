@@ -19,8 +19,20 @@ namespace PemiraClient
         {
             Console.WriteLine("Connecting to " + ipAddr + ":" + port);
             client = new TcpClient();
-            client.Connect(ipAddr, port);
-            Console.WriteLine("Connected.");
+
+            bool notConnected = true;
+            while (notConnected) {
+                try
+                {
+                    client.Connect(ipAddr, port);
+                    Console.WriteLine("Connected.");
+                    notConnected = false;
+                } catch(SocketException exp)
+                {
+                    Console.WriteLine("Unable to connect.");
+                    Console.WriteLine(exp.StackTrace);
+                }
+            }
 
             try {
                 clientStream = client.GetStream();
@@ -32,21 +44,34 @@ namespace PemiraClient
 
         public bool send(string msg)
         {
-            clientStream.Write(Encoding.ASCII.GetBytes(msg), 0, msg.Length);
-            return true;
+            try
+            {
+                clientStream.Write(Encoding.ASCII.GetBytes(msg), 0, msg.Length);
+                return true;
+            } catch(Exception e)
+            {
+                return false;
+            }
         }
 
-        public string recv()
+        public ReceiveResponse recv()
         {
             byte[] msgBytes = new byte[MAX_RECV_BUFFER];
-            clientStream.Read(msgBytes, 0, MAX_RECV_BUFFER);
-            Console.WriteLine("NIM : " + System.Text.Encoding.ASCII.GetString(msgBytes));
-            return System.Text.Encoding.ASCII.GetString(msgBytes);
+            try
+            {
+                clientStream.Read(msgBytes, 0, MAX_RECV_BUFFER);
+                Console.WriteLine("NIM : " + System.Text.Encoding.ASCII.GetString(msgBytes));
+                return new ReceiveResponse(true, System.Text.Encoding.ASCII.GetString(msgBytes));
+            } catch(Exception e)
+            {
+                return new ReceiveResponse(false, System.Text.Encoding.ASCII.GetString(msgBytes));
+            }
         }
 
         public void cancel()
         {
             client.Close();
         }
+
     }
 }

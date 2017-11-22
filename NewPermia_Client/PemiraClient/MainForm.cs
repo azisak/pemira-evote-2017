@@ -70,11 +70,15 @@ namespace PemiraClient
 
                 Invoke(showLabel, hub_operator, true);
 
-                string nim = connectionManager.recv();
+                ReceiveResponse response = new ReceiveResponse(false, "");
+                while (!response.status)
+                {
+                    response = connectionManager.recv();
+                }
 
                 Invoke(showLabel, hub_operator, false);
 
-                Invoke(setLabelText, label_NIM, nim);
+                Invoke(setLabelText, label_NIM, response.value);
                 Invoke(showLabel, label_NIM, true);
 
                 bool sessionExpired = false;
@@ -139,7 +143,11 @@ namespace PemiraClient
                             case State.THANKYOU:
                                 Invoke(showLabel, label_timer_overview, false);
                                 Invoke(showLabel, label_timer_options_2, false);
-                                connectionManager.send(state.getDecision(0) + "," + state.getDecision(1));
+                                bool sent = connectionManager.send(state.getDecision(0) + "," + state.getDecision(1));
+                                while (!sent)
+                                {
+                                    sent = connectionManager.send(state.getDecision(0) + "," + state.getDecision(1));
+                                }
                                 Console.WriteLine("Final decision : " + state.getDecision(0) + "," + state.getDecision(1));
                                 Thread.Sleep(2000);
                                 sessionExpired = true;
@@ -183,7 +191,7 @@ namespace PemiraClient
 
             for (int i = 20; i >= 0; i--)
             {
-                Invoke(UpdateTimer, label_timer_options_2, i);
+                Invoke(UpdateTimer, label_timer_options_2, i.ToString());
                 Thread.Sleep(1000);
                 isAbstain = label_timer_options_2.Visible;
                 if (!isAbstain) break;
