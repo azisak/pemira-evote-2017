@@ -37,7 +37,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(147, 95);
+            this.btnOK.Location = new System.Drawing.Point(121, 92);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 5;
@@ -48,7 +48,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(54, 34);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(28, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 4;
@@ -56,7 +57,8 @@
             // 
             // txbIP
             // 
-            this.txbIP.Location = new System.Drawing.Point(125, 31);
+            this.txbIP.BackColor = System.Drawing.Color.MistyRose;
+            this.txbIP.Location = new System.Drawing.Point(99, 25);
             this.txbIP.Name = "txbIP";
             this.txbIP.Size = new System.Drawing.Size(97, 20);
             this.txbIP.TabIndex = 3;
@@ -65,7 +67,8 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(54, 66);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(28, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 7;
@@ -73,7 +76,8 @@
             // 
             // txbPORT
             // 
-            this.txbPORT.Location = new System.Drawing.Point(125, 63);
+            this.txbPORT.BackColor = System.Drawing.Color.MistyRose;
+            this.txbPORT.Location = new System.Drawing.Point(99, 57);
             this.txbPORT.Name = "txbPORT";
             this.txbPORT.Size = new System.Drawing.Size(97, 20);
             this.txbPORT.TabIndex = 6;
@@ -82,7 +86,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 157);
+            this.BackColor = System.Drawing.Color.Brown;
+            this.ClientSize = new System.Drawing.Size(247, 157);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txbPORT);
             this.Controls.Add(this.btnOK);

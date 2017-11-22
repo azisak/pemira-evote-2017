@@ -30,8 +30,8 @@ namespace PemiraClient
 
         private const int MAX_ITERATION = 1;
 
-        private const char KEY_1 = 'q';
-        private const char KEY_2 = 'p';
+        private const char KEY_1 = '1';
+        private const char KEY_2 = '2';
 
         private const char VAL_1 = '1';
         private const char VAL_2 = '2';
@@ -41,10 +41,6 @@ namespace PemiraClient
         private int iteration;
 
         private PictureBox pictureBox;
-        private Label nim;
-        private Label timerOptions1;
-        private Label timerOptions2;
-        private Label timerOverview;
 
         private Point topCenter = new Point(603, 181);
         private Point rightBottom = new Point(1153, 442);

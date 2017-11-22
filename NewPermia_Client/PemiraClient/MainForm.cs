@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,6 +30,7 @@ namespace PemiraClient
         public MainForm()
         {
             InitializeComponent();
+
             portfom pf = new portfom();
             pf.ShowDialog();
             IP_ADDRESS = pf.IpAddr;
@@ -43,27 +47,17 @@ namespace PemiraClient
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            ProcessModule objCurrentModule = Process.GetCurrentProcess().MainModule;
+            objKeyboardProcess = new LowLevelKeyboardProc(captureKey);
+            ptrHook = SetWindowsHookEx(13, objKeyboardProcess, GetModuleHandle(objCurrentModule.ModuleName), 0);
+
+            killExplorer();
+
             new Thread(proccessState).Start();
-        }
-
-        private void _showLabel(Label label, bool isShown)
-        {
-            label.Visible = isShown;
-        }
-
-        private void _setTimerLocation(Point point)
-        {
-            label_timer_overview.Location = point;
-        }
-
-        private void _setLabelText(Label label, string text)
-        {
-            label.Text = text;
         }
 
         private void proccessState()
         {
-            
             Action<Label, bool> showLabel = _showLabel;
             Action<Point> setTimerLocation = _setTimerLocation;
             Action<Label, string> setLabelText = _setLabelText;
@@ -146,7 +140,7 @@ namespace PemiraClient
                                 Invoke(showLabel, label_timer_overview, false);
                                 Invoke(showLabel, label_timer_options_2, false);
                                 connectionManager.send(state.getDecision(0) + "," + state.getDecision(1));
-                                Console.WriteLine(">>>>>>>> " + state.getDecision(0) + "," + state.getDecision(1));
+                                Console.WriteLine("Final decision : " + state.getDecision(0) + "," + state.getDecision(1));
                                 Thread.Sleep(2000);
                                 sessionExpired = true;
                                 state.updateKeypress(-1);
@@ -164,20 +158,15 @@ namespace PemiraClient
             state.updateKeypress(e.KeyChar);
         }
 
-        private void updateTimer(int time, Label label)
-        {
-            label.Text = time.ToString();
-        }
-
         private void triggerTimerInOptions()
         {
-            Action<int, Label> UpdateTimer = updateTimer;
+            Action<Label, string> UpdateTimer = _setLabelText;
 
             bool isAbstain = true;
 
             for (int i = 20; i >= 0; i--)
             {
-                Invoke(UpdateTimer, i, label_timer_options_1);
+                Invoke(UpdateTimer, label_timer_options_1, i.ToString());
                 Thread.Sleep(1000);
                 isAbstain = label_timer_options_1.Visible;
                 if (!isAbstain) break;
@@ -188,13 +177,13 @@ namespace PemiraClient
 
         private void triggerTimerInOptions2()
         {
-            Action<int, Label> UpdateTimer = updateTimer;
+            Action<Label, string> UpdateTimer = _setLabelText;
 
             bool isAbstain = true;
 
             for (int i = 20; i >= 0; i--)
             {
-                Invoke(UpdateTimer, i, label_timer_options_2);
+                Invoke(UpdateTimer, label_timer_options_2, i);
                 Thread.Sleep(1000);
                 isAbstain = label_timer_options_2.Visible;
                 if (!isAbstain) break;
@@ -206,20 +195,108 @@ namespace PemiraClient
 
         private void triggerTimerInOverview()
         {
-            Action<int, Label> UpdateTimer = updateTimer;
+            Action<Label, string> UpdateTimer = _setLabelText;
             Action<Label, bool> showLabel = _showLabel;
 
             bool sure = true;
 
             for (int i = 10; i >= 0; i--)
             {
-                Invoke(UpdateTimer, i, label_timer_overview);
+                Invoke(UpdateTimer, label_timer_overview, i.ToString());
                 Thread.Sleep(1000);
                 sure = label_timer_overview.Visible;
                 if (!sure) break;
             }
 
             if (sure) state.switchState(State.THANKYOU);
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Alt & e.Shift & e.KeyCode == Keys.P)
+            {
+                PasswordDialog dialog = new PasswordDialog();
+                dialog.Show();
+            }
+        }
+
+        private void _showLabel(Label label, bool isShown)
+        {
+            label.Visible = isShown;
+        }
+
+        private void _setTimerLocation(Point point)
+        {
+            label_timer_overview.Location = point;
+        }
+
+        private void _setLabelText(Label label, string text)
+        {
+            label.Text = text;
+        }
+
+        // Structure contain information about low-level keyboard input event 
+        [StructLayout(LayoutKind.Sequential)]
+        private struct KBDLLHOOKSTRUCT
+        {
+            public Keys key;
+            public int scanCode;
+            public int flags;
+            public int time;
+            public IntPtr extra;
+        }
+        //System level functions to be used for hook and unhook keyboard input  
+        private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr SetWindowsHookEx(int id, LowLevelKeyboardProc callback, IntPtr hMod, uint dwThreadId);
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern bool UnhookWindowsHookEx(IntPtr hook);
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr CallNextHookEx(IntPtr hook, int nCode, IntPtr wp, IntPtr lp);
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr GetModuleHandle(string name);
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern short GetAsyncKeyState(Keys key);
+        [DllImport("user32.dll")]
+        public static extern int FindWindow(string lpClassName, string lpWindowName);
+        [return: MarshalAs(UnmanagedType.Bool)]
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern bool PostMessage(int hWnd, uint Msg, int wParam, int lParam);
+        //Declaring Global objects     
+        private IntPtr ptrHook;
+        private LowLevelKeyboardProc objKeyboardProcess;
+
+        private IntPtr captureKey(int nCode, IntPtr wp, IntPtr lp)
+        {
+            if (nCode >= 0)
+            {
+                KBDLLHOOKSTRUCT objKeyInfo = (KBDLLHOOKSTRUCT)Marshal.PtrToStructure(lp, typeof(KBDLLHOOKSTRUCT));
+
+                bool inactivateKey = objKeyInfo.key == Keys.RWin || objKeyInfo.key == Keys.LWin;
+                inactivateKey = inactivateKey || objKeyInfo.key == Keys.Tab && HasAltModifier(objKeyInfo.flags);
+                inactivateKey = inactivateKey || objKeyInfo.key == Keys.Escape && (ModifierKeys & Keys.Control) == Keys.Control;
+                inactivateKey = inactivateKey || objKeyInfo.key == Keys.Escape && HasAltModifier(objKeyInfo.flags);
+                inactivateKey = inactivateKey || objKeyInfo.key == Keys.F4 && HasAltModifier(objKeyInfo.flags);
+
+                if (inactivateKey)
+                {
+                    return (IntPtr)1; 
+                }
+            }
+            return CallNextHookEx(ptrHook, nCode, wp, lp);
+        }
+
+        bool HasAltModifier(int flags)
+        {
+            return (flags & 0x20) == 0x20;
+        }
+
+        private void killExplorer()
+        {
+            int hwnd;
+            hwnd = FindWindow("Progman", null);
+            PostMessage(hwnd, /*WM_QUIT*/ 0x12, 0, 0);
+            return;
         }
     }
 }

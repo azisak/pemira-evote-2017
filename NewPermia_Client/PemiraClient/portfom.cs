@@ -17,6 +17,8 @@ namespace PemiraClient
         public portfom()
         {
             InitializeComponent();
+
+            StartPosition = FormStartPosition.CenterScreen;
         }
         
         public string IpAddr
@@ -40,7 +42,15 @@ namespace PemiraClient
             } else
             {
                 ipAddr = txbIP.Text;
-                port = Convert.ToInt32(txbPORT.Text);
+                try
+                {
+                    port = Convert.ToInt32(txbPORT.Text);
+                } catch(FormatException exp)
+                {
+                    Console.WriteLine(exp.StackTrace);
+                    MessageBox.Show("Port tidak valid!");
+                    return;
+                }
                 this.Close();
             }
         }
