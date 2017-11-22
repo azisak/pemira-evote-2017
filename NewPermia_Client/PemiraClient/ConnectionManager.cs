@@ -30,7 +30,6 @@ namespace PemiraClient
                 } catch(SocketException exp)
                 {
                     Console.WriteLine("Unable to connect.");
-                    Console.WriteLine(exp.StackTrace);
                 }
             }
 
@@ -64,7 +63,7 @@ namespace PemiraClient
                 return new ReceiveResponse(true, System.Text.Encoding.ASCII.GetString(msgBytes));
             } catch(Exception e)
             {
-                return new ReceiveResponse(false, System.Text.Encoding.ASCII.GetString(msgBytes));
+                return new ReceiveResponse(false, "");
             }
         }
 
