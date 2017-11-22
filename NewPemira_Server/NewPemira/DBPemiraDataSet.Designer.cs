@@ -3038,11 +3038,59 @@ SELECT prodi, pillihan_1, pilihan_2 FROM Pilihan WHERE (prodi = @prodi)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT prodi, pilihan_2, pilihan_1 FROM Pilihan";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT A.prodi, jumlahNomor1, jumlahNomor2
+FROM (SELECT prodi, COUNT(pilihan_1) as jumlahNomor1
+      FROM pilihan
+      WHERE pilihan_1 = '1'
+      GROUP BY prodi
+      ) as A LEFT OUTER JOIN
+      (SELECT prodi, COUNT(pilihan_1) as jumlahNomor2
+      FROM pilihan
+      WHERE pilihan_1 = '2'
+      GROUP BY prodi) as B ON A.prodi = B.prodi
+UNION
+SELECT B.prodi, jumlahNomor1, jumlahNomor2
+FROM (SELECT prodi, COUNT(pilihan_1) as jumlahNomor1
+      FROM pilihan
+      WHERE pilihan_1 = '1'
+      GROUP BY prodi
+      ) as A RIGHT OUTER JOIN
+      (SELECT prodi, COUNT(pilihan_1) as jumlahNomor2
+      FROM pilihan
+      WHERE pilihan_1 = '2'
+      GROUP BY prodi) as B ON A.prodi = B.prodi";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT A.prodi, jumlahNomor1, jumlahNomor2
+FROM (SELECT prodi, COUNT(pilihan_2) as jumlahNomor1
+      FROM pilihan
+      WHERE pilihan_2 = '1'
+      GROUP BY prodi
+      ) as A LEFT OUTER JOIN
+      (SELECT prodi, COUNT(pilihan_2) as jumlahNomor2
+      FROM pilihan
+      WHERE pilihan_2 = '2'
+      GROUP BY prodi) as B ON A.prodi = B.prodi
+UNION
+SELECT B.prodi, jumlahNomor1, jumlahNomor2
+FROM (SELECT prodi, COUNT(pilihan_2) as jumlahNomor1
+      FROM pilihan
+      WHERE pilihan_2 = '1'
+      GROUP BY prodi
+      ) as A RIGHT OUTER JOIN
+      (SELECT prodi, COUNT(pilihan_2) as jumlahNomor2
+      FROM pilihan
+      WHERE pilihan_2 = '2'
+      GROUP BY prodi) as B ON A.prodi = B.prodi";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3065,6 +3113,56 @@ SELECT prodi, pillihan_1, pilihan_2 FROM Pilihan WHERE (prodi = @prodi)";
         public virtual DBPemiraDataSet.PilihanDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             DBPemiraDataSet.PilihanDataTable dataTable = new DBPemiraDataSet.PilihanDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByPreferensi1(DBPemiraDataSet.PilihanDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual System.Data.DataTable GetDataByPreferensi1() {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            //DBPemiraDataSet.PilihanDataTable dataTable = new DBPemiraDataSet.PilihanDataTable();
+            System.Data.DataTable dataTable = new System.Data.DataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByPreferensi2(DBPemiraDataSet.PilihanDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual System.Data.DataTable GetDataByPreferensi2() {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            //DBPemiraDataSet.PilihanDataTable dataTable = new DBPemiraDataSet.PilihanDataTable();
+            System.Data.DataTable dataTable = new System.Data.DataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

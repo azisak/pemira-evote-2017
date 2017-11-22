@@ -81,11 +81,11 @@ namespace NewPemira
             DataRow[] found = dptDT.Select(query);
             if (found.Length == 1)
             {
-                return false;
+                return true;
             }
             else
             {
-                return true;
+                return false;
             }
         }
 
@@ -156,8 +156,8 @@ namespace NewPemira
             DBPemiraDataSet.DPTDataTable dptDTexport = new DBPemiraDataSet.DPTDataTable();
             EnumerableRowCollection<DBPemiraDataSet.DPTRow> DPQuery =
                 from dpt in dptDTexport.AsEnumerable()
-                where dpt.Field<string>("sudahpilih") == "0"
-                //where dptDT.Field<string>("sudahpilih") == "1"
+                //where dpt.Field<string>("sudahpilih") == "0"
+                where dpt.Field<string>("sudahpilih") == "1"
                 select dpt;
             bool isSuccess = true;
             DataTable dptExport = new DataTable();

@@ -192,7 +192,64 @@ SELECT prodi, pillihan_1, pilihan_2 FROM Pilihan WHERE (prodi = @prodi)</Command
               <Mapping SourceColumn="pilihan_2" DataSetColumn="pilihan_2" />
               <Mapping SourceColumn="pilihan_1" DataSetColumn="pilihan_1" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="DBPemiraConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByPreferensi1" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByPreferensi1" GeneratorSourceName="FillByPreferensi1" GetMethodModifier="Public" GetMethodName="GetDataByPreferensi1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByPreferensi1" UserSourceName="FillByPreferensi1">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT A.prodi, jumlahNomor1, jumlahNomor2
+FROM (SELECT prodi, COUNT(pilihan_1) as jumlahNomor1
+      FROM pilihan
+      WHERE pilihan_1 = '1'
+      GROUP BY prodi
+      ) as A LEFT OUTER JOIN
+      (SELECT prodi, COUNT(pilihan_1) as jumlahNomor2
+      FROM pilihan
+      WHERE pilihan_1 = '2'
+      GROUP BY prodi) as B ON A.prodi = B.prodi
+UNION
+SELECT B.prodi, jumlahNomor1, jumlahNomor2
+FROM (SELECT prodi, COUNT(pilihan_1) as jumlahNomor1
+      FROM pilihan
+      WHERE pilihan_1 = '1'
+      GROUP BY prodi
+      ) as A RIGHT OUTER JOIN
+      (SELECT prodi, COUNT(pilihan_1) as jumlahNomor2
+      FROM pilihan
+      WHERE pilihan_1 = '2'
+      GROUP BY prodi) as B ON A.prodi = B.prodi</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="DBPemiraConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByPreferensi2" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByPreferensi2" GeneratorSourceName="FillByPreferensi2" GetMethodModifier="Public" GetMethodName="GetDataByPreferensi2" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByPreferensi2" UserSourceName="FillByPreferensi2">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT A.prodi, jumlahNomor1, jumlahNomor2
+FROM (SELECT prodi, COUNT(pilihan_2) as jumlahNomor1
+      FROM pilihan
+      WHERE pilihan_2 = '1'
+      GROUP BY prodi
+      ) as A LEFT OUTER JOIN
+      (SELECT prodi, COUNT(pilihan_2) as jumlahNomor2
+      FROM pilihan
+      WHERE pilihan_2 = '2'
+      GROUP BY prodi) as B ON A.prodi = B.prodi
+UNION
+SELECT B.prodi, jumlahNomor1, jumlahNomor2
+FROM (SELECT prodi, COUNT(pilihan_2) as jumlahNomor1
+      FROM pilihan
+      WHERE pilihan_2 = '1'
+      GROUP BY prodi
+      ) as A RIGHT OUTER JOIN
+      (SELECT prodi, COUNT(pilihan_2) as jumlahNomor2
+      FROM pilihan
+      WHERE pilihan_2 = '2'
+      GROUP BY prodi) as B ON A.prodi = B.prodi</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
         </Tables>
         <Sources />
@@ -202,7 +259,7 @@ SELECT prodi, pillihan_1, pilihan_2 FROM Pilihan WHERE (prodi = @prodi)</Command
   <xs:element name="DBPemiraDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DBPemiraDataSet" msprop:Generator_UserDSName="DBPemiraDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DPT" msprop:Generator_TableClassName="DPTDataTable" msprop:Generator_TableVarName="tableDPT" msprop:Generator_RowChangedName="DPTRowChanged" msprop:Generator_TablePropName="DPT" msprop:Generator_RowDeletingName="DPTRowDeleting" msprop:Generator_RowChangingName="DPTRowChanging" msprop:Generator_RowEvHandlerName="DPTRowChangeEventHandler" msprop:Generator_RowDeletedName="DPTRowDeleted" msprop:Generator_RowClassName="DPTRow" msprop:Generator_UserTableName="DPT" msprop:Generator_RowEvArgName="DPTRowChangeEvent">
+        <xs:element name="DPT" msprop:Generator_TableClassName="DPTDataTable" msprop:Generator_TableVarName="tableDPT" msprop:Generator_TablePropName="DPT" msprop:Generator_RowDeletingName="DPTRowDeleting" msprop:Generator_RowChangingName="DPTRowChanging" msprop:Generator_RowEvHandlerName="DPTRowChangeEventHandler" msprop:Generator_RowDeletedName="DPTRowDeleted" msprop:Generator_UserTableName="DPT" msprop:Generator_RowChangedName="DPTRowChanged" msprop:Generator_RowEvArgName="DPTRowChangeEvent" msprop:Generator_RowClassName="DPTRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="nim" msprop:Generator_ColumnVarNameInTable="columnnim" msprop:Generator_ColumnPropNameInRow="nim" msprop:Generator_ColumnPropNameInTable="nimColumn" msprop:Generator_UserColumnName="nim">
@@ -229,7 +286,7 @@ SELECT prodi, pillihan_1, pilihan_2 FROM Pilihan WHERE (prodi = @prodi)</Command
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DPT_Template" msprop:Generator_TableClassName="DPT_TemplateDataTable" msprop:Generator_TableVarName="tableDPT_Template" msprop:Generator_RowChangedName="DPT_TemplateRowChanged" msprop:Generator_TablePropName="DPT_Template" msprop:Generator_RowDeletingName="DPT_TemplateRowDeleting" msprop:Generator_RowChangingName="DPT_TemplateRowChanging" msprop:Generator_RowEvHandlerName="DPT_TemplateRowChangeEventHandler" msprop:Generator_RowDeletedName="DPT_TemplateRowDeleted" msprop:Generator_RowClassName="DPT_TemplateRow" msprop:Generator_UserTableName="DPT_Template" msprop:Generator_RowEvArgName="DPT_TemplateRowChangeEvent">
+        <xs:element name="DPT_Template" msprop:Generator_TableClassName="DPT_TemplateDataTable" msprop:Generator_TableVarName="tableDPT_Template" msprop:Generator_TablePropName="DPT_Template" msprop:Generator_RowDeletingName="DPT_TemplateRowDeleting" msprop:Generator_RowChangingName="DPT_TemplateRowChanging" msprop:Generator_RowEvHandlerName="DPT_TemplateRowChangeEventHandler" msprop:Generator_RowDeletedName="DPT_TemplateRowDeleted" msprop:Generator_UserTableName="DPT_Template" msprop:Generator_RowChangedName="DPT_TemplateRowChanged" msprop:Generator_RowEvArgName="DPT_TemplateRowChangeEvent" msprop:Generator_RowClassName="DPT_TemplateRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="nim" msprop:Generator_ColumnVarNameInTable="columnnim" msprop:Generator_ColumnPropNameInRow="nim" msprop:Generator_ColumnPropNameInTable="nimColumn" msprop:Generator_UserColumnName="nim">
@@ -249,7 +306,7 @@ SELECT prodi, pillihan_1, pilihan_2 FROM Pilihan WHERE (prodi = @prodi)</Command
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Password" msprop:Generator_TableClassName="PasswordDataTable" msprop:Generator_TableVarName="tablePassword" msprop:Generator_RowChangedName="PasswordRowChanged" msprop:Generator_TablePropName="Password" msprop:Generator_RowDeletingName="PasswordRowDeleting" msprop:Generator_RowChangingName="PasswordRowChanging" msprop:Generator_RowEvHandlerName="PasswordRowChangeEventHandler" msprop:Generator_RowDeletedName="PasswordRowDeleted" msprop:Generator_RowClassName="PasswordRow" msprop:Generator_UserTableName="Password" msprop:Generator_RowEvArgName="PasswordRowChangeEvent">
+        <xs:element name="Password" msprop:Generator_TableClassName="PasswordDataTable" msprop:Generator_TableVarName="tablePassword" msprop:Generator_TablePropName="Password" msprop:Generator_RowDeletingName="PasswordRowDeleting" msprop:Generator_RowChangingName="PasswordRowChanging" msprop:Generator_RowEvHandlerName="PasswordRowChangeEventHandler" msprop:Generator_RowDeletedName="PasswordRowDeleted" msprop:Generator_UserTableName="Password" msprop:Generator_RowChangedName="PasswordRowChanged" msprop:Generator_RowEvArgName="PasswordRowChangeEvent" msprop:Generator_RowClassName="PasswordRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="password_1" msprop:Generator_ColumnVarNameInTable="columnpassword_1" msprop:Generator_ColumnPropNameInRow="password_1" msprop:Generator_ColumnPropNameInTable="password_1Column" msprop:Generator_UserColumnName="password_1">
@@ -290,7 +347,7 @@ SELECT prodi, pillihan_1, pilihan_2 FROM Pilihan WHERE (prodi = @prodi)</Command
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Pilihan" msprop:Generator_TableClassName="PilihanDataTable" msprop:Generator_TableVarName="tablePilihan" msprop:Generator_RowChangedName="PilihanRowChanged" msprop:Generator_TablePropName="Pilihan" msprop:Generator_RowDeletingName="PilihanRowDeleting" msprop:Generator_RowChangingName="PilihanRowChanging" msprop:Generator_RowEvHandlerName="PilihanRowChangeEventHandler" msprop:Generator_RowDeletedName="PilihanRowDeleted" msprop:Generator_RowClassName="PilihanRow" msprop:Generator_UserTableName="Pilihan" msprop:Generator_RowEvArgName="PilihanRowChangeEvent">
+        <xs:element name="Pilihan" msprop:Generator_TableClassName="PilihanDataTable" msprop:Generator_TableVarName="tablePilihan" msprop:Generator_TablePropName="Pilihan" msprop:Generator_RowDeletingName="PilihanRowDeleting" msprop:Generator_RowChangingName="PilihanRowChanging" msprop:Generator_RowEvHandlerName="PilihanRowChangeEventHandler" msprop:Generator_RowDeletedName="PilihanRowDeleted" msprop:Generator_UserTableName="Pilihan" msprop:Generator_RowChangedName="PilihanRowChanged" msprop:Generator_RowEvArgName="PilihanRowChangeEvent" msprop:Generator_RowClassName="PilihanRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="prodi" msprop:Generator_ColumnVarNameInTable="columnprodi" msprop:Generator_ColumnPropNameInRow="prodi" msprop:Generator_ColumnPropNameInTable="prodiColumn" msprop:Generator_UserColumnName="prodi">

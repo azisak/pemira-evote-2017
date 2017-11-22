@@ -68,7 +68,7 @@ namespace NewPemira
 
         public bool isTableEmpty()
         {
-            if (passwordDT == null)
+            if (passwordDT.Count == 0)
             {
                 return true;
             } else

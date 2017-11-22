@@ -139,7 +139,7 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.BackColor = System.Drawing.Color.Red;
+            this.cancelBtn.BackColor = System.Drawing.Color.Transparent;
             this.cancelBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelBtn.Location = new System.Drawing.Point(71, 229);
             this.cancelBtn.Name = "cancelBtn";
@@ -151,7 +151,7 @@
             // 
             // submitBtn
             // 
-            this.submitBtn.BackColor = System.Drawing.Color.Lime;
+            this.submitBtn.BackColor = System.Drawing.Color.Transparent;
             this.submitBtn.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.submitBtn.Location = new System.Drawing.Point(359, 229);
             this.submitBtn.Name = "submitBtn";

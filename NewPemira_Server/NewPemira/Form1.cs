@@ -21,7 +21,7 @@ namespace NewPemira
         const int N_PASSWORD = 5;
         List<string> password = new List<string>();
 
-        const string myIp = "169.254.1.2";
+        const string myIp = "169.254.1.3";
         const int port1 = 13514;
         const int port2 = 13515;
         MyListener list1;
@@ -325,7 +325,6 @@ namespace NewPemira
             Invoke(disableClear, 1);
             string nim = (string)_nim;
             string msg;
-            Invoke(setPilih, nim);
 
             if (!list1.checkOK())
             {
@@ -344,6 +343,7 @@ namespace NewPemira
                 Invoke(tambahPilihan, prodi, tokens[0], tokens[1]);
                 Console.WriteLine("Pref1 : " + tokens[0] + " Pref2 : " + tokens[1]);
                 Invoke(remTop, 1);
+                Invoke(setPilih, nim);
             } catch (Exception ex)
             {
                 MessageBox.Show("Coba lagi");
@@ -371,7 +371,6 @@ namespace NewPemira
             Invoke(disableClear, 2);
             string nim = (string)_nim;
             string msg;
-            Invoke(setPilih, nim);
 
             if (!list2.checkOK())
             {
@@ -390,6 +389,7 @@ namespace NewPemira
                 Invoke(tambahPilihan, prodi, tokens[0], tokens[1]);
                 Console.WriteLine("Pref1 : " + tokens[0] + " Pref2 : " + tokens[1]);
                 Invoke(remTop, 2);
+                Invoke(setPilih, nim);
             }
             catch (Exception ex)
             {
@@ -515,17 +515,18 @@ namespace NewPemira
                 check = dbPass.checkPassword(validate.getPassword());
                 if (check)
                 {
+                    PilihExport pil = new PilihExport();
+                    pil.ShowDialog();
+                    int pilihan = pil.getSelected();
                     var fd = new FolderBrowserDialog();
-                    //fd.InitialDirectory = System.Environment.CurrentDirectory;
-                    //fd.Title = "Please select file to import.";
                     if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
-                        string exportname = "K3MResultsTotal.csv";
+                        string exportname = "K3MResultsPreferensi"+ pilihan +".csv";
 
                         string selectedPath = fd.SelectedPath;
                         string msg = "";
                         string pathDp = selectedPath + @"\" + exportname;
-                        if (dbPilihan.exportCSVPilihanKM(pathDp))
+                        if (dbPilihan.exportCSVPilihanKMPreferensi(pathDp, pilihan))
                         {
                             msg += "Export Successful!\n";
                             msg += "File Exported to: " + selectedPath + "\n";

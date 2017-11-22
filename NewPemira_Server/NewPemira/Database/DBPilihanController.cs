@@ -40,7 +40,7 @@ namespace NewPemira
          */
         public bool tambahPilihanKM(string prodi, string pilihan1, string pilihan2)
         {
-            int result = pilihanTableAdapter.Insert(prodi, pilihan1, pilihan2);
+            int result = pilihanTableAdapter.Insert(prodi, pilihan2, pilihan1);
             if (result == 1)
             {
                 MessageBox.Show("Add Data yang Sudah Memilih Berhasil");
@@ -90,26 +90,25 @@ namespace NewPemira
 
         /* Export CSV dengan prodi
          */
-        public bool exportCSVPilihanKMPilihan1(string path, string prodi)
+        public bool exportCSVPilihanKMPreferensi(string path, int pilihan)
         {
-            DBPemiraDataSet.PilihanDataTable dtPilihanProdi = new DBPemiraDataSet.PilihanDataTable();
-
-            EnumerableRowCollection<DBPemiraDataSet.PilihanRow> pilihanProdiQuery =
-                from pilihanProdi in dtPilihanProdi.AsEnumerable()
-                where pilihanProdi.Field<string>(columnName: "pilihan_1") == "1"
-                select pilihanProdi;
             bool isSuccess = true;
             DataTable pilihanProdiExport = new DataTable();
             try
             {
-                pilihanTableAdapter.Fill(dtPilihanProdi);
-                DataView dv = pilihanProdiQuery.AsDataView();
-                pilihanProdiExport = dv.ToTable(false, "prodi", "pilihan_1", "pilihan_2");
+                if (pilihan == 1)
+                {
+                    pilihanProdiExport = pilihanTableAdapter.GetDataByPreferensi1();
+                } else
+                {
+                    pilihanProdiExport = pilihanTableAdapter.GetDataByPreferensi2();
+                }
+                
                 try
                 {
                     
                     WriteFile(pilihanProdiExport, path, false, ",");
-                    MessageBox.Show("Export Pilihan KM results Successful");
+                    MessageBox.Show("Export Pilihan KM Preferensi"+ pilihan +" Successful");
                     isSuccess = true;
                 }
                 catch (Exception e)
