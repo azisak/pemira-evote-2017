@@ -27,18 +27,16 @@ namespace NewPemira
             {
                 sqlCmd.Connection = passwordTableAdapter.Connection;
                 passwordTableAdapter.Fill(passwordDT);
-                //Console.WriteLine("Koneksi Data Yang Sudah Memilih Berhasil");
             }
             catch (Exception e)
             {
                 MessageBox.Show("DataBase Open error\nMessage: " + e.Message + "\n\nSource: " + e.Source);
-                //Console.WriteLine("Koneksi Data Yang Sudah Memilih Gagal");
             }
         }
 
-        public bool addPassword(string pass1, string pass2, string pass3, string pass4, string pass5)
+        public bool addPassword(string pass1, string pass2, string pass3, string pass4, string pass5, string pass6)
         {
-            int result = passwordTableAdapter.Insert(pass1, pass2, pass3, pass4, pass5);
+            int result = passwordTableAdapter.Insert(pass1, pass2, pass3, pass4, pass5, pass6);
             if (result == 1)
             {
                 MessageBox.Show("Add Password Berhasil");
@@ -55,7 +53,7 @@ namespace NewPemira
         {
             try
             {
-                int result = passwordTableAdapter.Insert(password[0], password[1], password[2], password[3], password[4]);
+                int result = passwordTableAdapter.Insert(password[0], password[1], password[2], password[3], password[4], password[5]);
                 if (result == 1)
                 {
                     MessageBox.Show("Add Password Berhasil");
@@ -96,10 +94,9 @@ namespace NewPemira
                 for (int j = 0; j < 5; j++)
                 {
                     string col = "password_" + (j + 1);
-                    //Console.WriteLine(found[0][col].ToString());
                 }
                 int i = 1;
-                while (i < 5 && check)
+                while (i < 6 && check)
                 {
                     string col = "password_" + (i + 1);
                     if (!password.Contains(found[0][col].ToString()))

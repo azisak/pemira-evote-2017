@@ -58,6 +58,17 @@ namespace NewPemira
             }
         }
 
+        public bool isEmptyDPT()
+        {
+            if (dptDT.Count == 0)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+
        /*
         * Fungsi getDPT untuk mengecek apakah nim yang dimasukkan dapat memilih atau tidak
         */

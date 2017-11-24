@@ -18,7 +18,7 @@ namespace NewPemira
         DBPilihanController dbPilihan = new DBPilihanController();
         const int MAX_QUEUE_BILIK_1 = 2;
         const int MAX_QUEUE_BILIK_2 = 2;
-        const int N_PASSWORD = 5;
+        const int N_PASSWORD = 6;
         List<string> password = new List<string>();
 
         string myIp = "169.254.1.1";
@@ -47,6 +47,12 @@ namespace NewPemira
                     MessageBox.Show("Add Password Gagal");
                     Environment.Exit(0);
                 }
+            }
+
+            if (!dbDPT.isEmptyDPT())
+            {
+                belumImportLbl.Visible = false;
+                sudahImportLbl.Visible = true;
             }
 
             foreach (var pass in password)
@@ -139,7 +145,8 @@ namespace NewPemira
                 return false;
             }
             // Validate NIM must not voted 
-            else if (!dbDPT.checkBelumPilih(nim)) {
+            else if (!dbDPT.checkBelumPilih(nim))
+            {
                 MessageBox.Show(errNIMAlreadyVoted);
                 return false;
             }
@@ -476,7 +483,8 @@ namespace NewPemira
                 string fileToOpen = fd.FileName;
                 if (dbDPT.importCSV(fileToOpen))
                 {
-                    MessageBox.Show("Data Berhasil di Import");
+                    belumImportLbl.Visible = false;
+                    sudahImportLbl.Visible = true;
                 }
             }
         }
@@ -556,8 +564,6 @@ namespace NewPemira
         private void btnExportDP_Click(object sender, EventArgs e)
         {
             var fd = new FolderBrowserDialog();
-            //fd.InitialDirectory = System.Environment.CurrentDirectory;
-            //fd.Title = "Please select file to import.";
             if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 string exportDPname = "DPstatus.csv";
