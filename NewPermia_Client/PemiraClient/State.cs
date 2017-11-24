@@ -30,8 +30,8 @@ namespace PemiraClient
 
         private const int MAX_ITERATION = 1;
 
-        private const char KEY_1 = '1';
-        private const char KEY_2 = '2';
+        private const char KEY_1 = 'f';
+        private const char KEY_2 = 'j';
 
         private const char VAL_1 = '1';
         private const char VAL_2 = '2';
@@ -66,6 +66,7 @@ namespace PemiraClient
         {
             if (keypress != DEFAULT_KEY)
             {
+                keypress = Char.ToLower((char)keypress);
                 switch (state)
                 {
                     case WELCOME:
@@ -88,39 +89,25 @@ namespace PemiraClient
                         }
                         break;
                     case SECOND_PREF_1_CHOSEN:
-                        if (iteration >= MAX_ITERATION && (keypress == KEY_2 || keypress == KEY_1))
-                        {
-                            if (keypress == KEY_2) decision[1] = VAL_2;
-                            switchState(THANKYOU);
-                        }
-                        else if (keypress == KEY_1) 
-                            switchState(CONFIRMATION_1_ONLY);
-                        else if (keypress == KEY_2)
+                        if (keypress == KEY_2)
                         {
                             decision[1] = VAL_2;
                             switchState(CONFIRMATION_1_OVER_2);
                         }
                         break;
                     case SECOND_PREF_2_CHOSEN:
-                        if (iteration >= MAX_ITERATION && (keypress == KEY_2 || keypress == KEY_1))
-                        {
-                            if (keypress == KEY_1) decision[1] = VAL_1;
-                            switchState(THANKYOU);
-                        }
-                        else if (keypress == KEY_1)
+                        if (keypress == KEY_1)
                         {
                             decision[1] = VAL_1;
                             switchState(CONFIRMATION_2_OVER_1);
                         }
-					    else if (keypress == KEY_2)
-                            switchState(CONFIRMATION_2_ONLY);
 					    break;
 				    case CONFIRMATION_1_ONLY:
                     case CONFIRMATION_1_OVER_2:
                     case CONFIRMATION_2_ONLY:
                     case CONFIRMATION_2_OVER_1:
                     case CONFIRMATION_ABSTAIN:
-					    clarifyDecision(keypress);
+                        clarifyDecision(keypress);
 					    break;
                     case THANKYOU:
                         switchState(THANKYOU);
@@ -142,12 +129,37 @@ namespace PemiraClient
 
         private void clarifyDecision(int keypress)
         {
+            iteration++;
             if (keypress == BACKSPACE_KEY)
             {
-                iteration++;
-                switchState(FIRST_PREF_OPTIONS);
+                if (iteration > MAX_ITERATION)
+                {
+                    var th = new Thread(() =>
+                    {
+                        var form = new RedoWarning();
+                        form.FormClosing += (s, e) => Application.ExitThread();
+                        form.Show();
+                        Application.Run();
+                    });
+                    th.SetApartmentState(ApartmentState.STA);
+                    th.Start();
+                }
+                else switchState(FIRST_PREF_OPTIONS);
             }
-            else if (keypress == ENTER_KEY) switchState(THANKYOU);
+            else if (keypress == ENTER_KEY)
+            {
+                switchState(THANKYOU);
+            }
+        }
+
+        public int getIteration()
+        {
+            return iteration;
+        }
+
+        public int getMaxIteration()
+        {
+            return MAX_ITERATION;
         }
 
         public void switchState(int stateCode)

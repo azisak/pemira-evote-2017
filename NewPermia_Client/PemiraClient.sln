@@ -5,16 +5,27 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PemiraClient", "PemiraClient\PemiraClient.csproj", "{7AB2EF41-9398-40FE-832F-AB92C4BBC542}"
 EndProject
+Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "pemira", "pemira\pemira.aiproj", "{126D2CBA-6DFC-4532-B979-CA2D245D3051}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		DefaultBuild|Any CPU = DefaultBuild|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7AB2EF41-9398-40FE-832F-AB92C4BBC542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7AB2EF41-9398-40FE-832F-AB92C4BBC542}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AB2EF41-9398-40FE-832F-AB92C4BBC542}.DefaultBuild|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AB2EF41-9398-40FE-832F-AB92C4BBC542}.DefaultBuild|Any CPU.Build.0 = Debug|Any CPU
 		{7AB2EF41-9398-40FE-832F-AB92C4BBC542}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AB2EF41-9398-40FE-832F-AB92C4BBC542}.Release|Any CPU.Build.0 = Release|Any CPU
+		{126D2CBA-6DFC-4532-B979-CA2D245D3051}.Debug|Any CPU.ActiveCfg = DefaultBuild
+		{126D2CBA-6DFC-4532-B979-CA2D245D3051}.Debug|Any CPU.Build.0 = DefaultBuild
+		{126D2CBA-6DFC-4532-B979-CA2D245D3051}.DefaultBuild|Any CPU.ActiveCfg = DefaultBuild
+		{126D2CBA-6DFC-4532-B979-CA2D245D3051}.DefaultBuild|Any CPU.Build.0 = DefaultBuild
+		{126D2CBA-6DFC-4532-B979-CA2D245D3051}.Release|Any CPU.ActiveCfg = DefaultBuild
+		{126D2CBA-6DFC-4532-B979-CA2D245D3051}.Release|Any CPU.Build.0 = DefaultBuild
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

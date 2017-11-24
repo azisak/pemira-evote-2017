@@ -50,9 +50,9 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(58, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 13);
+            this.label2.Size = new System.Drawing.Size(130, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Password to close:";
+            this.label2.Text = "Password untuk menutup:";
             // 
             // button_submit
             // 
@@ -60,7 +60,7 @@
             this.button_submit.Name = "button_submit";
             this.button_submit.Size = new System.Drawing.Size(75, 23);
             this.button_submit.TabIndex = 3;
-            this.button_submit.Text = "Submit";
+            this.button_submit.Text = "OK";
             this.button_submit.UseVisualStyleBackColor = true;
             this.button_submit.Click += new System.EventHandler(this.submit_button_onclick);
             // 
@@ -70,7 +70,7 @@
             this.button_cancel.Name = "button_cancel";
             this.button_cancel.Size = new System.Drawing.Size(75, 23);
             this.button_cancel.TabIndex = 4;
-            this.button_cancel.Text = "Cancel";
+            this.button_cancel.Text = "Batal";
             this.button_cancel.UseVisualStyleBackColor = true;
             this.button_cancel.Click += new System.EventHandler(this.cancel_button_onclick);
             // 

@@ -28,7 +28,7 @@ namespace PemiraClient
             if (input_password.Text.ToString() == "")
                 return;
             else if (!input_password.Text.ToString().Equals(TEXT_PASSWORD))
-                MessageBox.Show("Invalid password!");
+                MessageBox.Show("Passwor tidak valid.");
             else
             {
                 RestartExplorer();

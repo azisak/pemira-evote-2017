@@ -104,7 +104,7 @@ namespace PemiraClient
                                 Invoke(showLabel, label_timer_options_1, false);
                                 Invoke(showLabel, label_timer_options_2, true);
                                 break;
-                            case State.SECOND_PREF_2_CHOSEN:
+                            case State.SECOND_PREF_2_CHOSEN: 
                                 new Thread(triggerTimerInOptions2).Start();
                                 Invoke(showLabel, label_timer_options_1, false);
                                 Invoke(showLabel, label_timer_options_2, true);
@@ -143,6 +143,7 @@ namespace PemiraClient
                             case State.THANKYOU:
                                 Invoke(showLabel, label_timer_overview, false);
                                 Invoke(showLabel, label_timer_options_2, false);
+                                Invoke(showLabel, label_timer_options_1, false);
                                 bool sent = connectionManager.send(state.getDecision(0) + "," + state.getDecision(1));
                                 while (!sent)
                                 {
@@ -305,6 +306,12 @@ namespace PemiraClient
             hwnd = FindWindow("Progman", null);
             PostMessage(hwnd, /*WM_QUIT*/ 0x12, 0, 0);
             return;
+        }
+
+        public static void ShowRedoWarning()
+        {
+            RedoWarning dialog = new RedoWarning();
+            dialog.Show();
         }
     }
 }
