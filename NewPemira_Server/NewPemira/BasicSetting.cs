@@ -41,6 +41,9 @@ namespace NewPemira
             } 
             else
             {
+                ipserver = txbIPServer.Text;
+                portblk1 = Int32.Parse(txbPORTBlk1.Text);
+                portblk2 = Int32.Parse(txbPORTBlk2.Text);
                 this.Close();
             }
         }

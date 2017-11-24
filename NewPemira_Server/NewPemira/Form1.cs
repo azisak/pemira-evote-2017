@@ -45,14 +45,13 @@ namespace NewPemira
                 if (!dbPass.addPassword(password))
                 {
                     MessageBox.Show("Add Password Gagal");
+                    Environment.Exit(0);
                 }
             }
 
-            // Print to console the password inputted
-            int idx = 1;
-            foreach (var password in password)
+            foreach (var pass in password)
             {
-                Console.WriteLine("Input pwd "+ idx++ +": " + password);
+                Console.WriteLine(pass);
             }
 
             BasicSetting bsc = new BasicSetting();
@@ -408,8 +407,6 @@ namespace NewPemira
                     Console.WriteLine(ex.StackTrace);
                 }
             }
-            
-            
         }
 
         private void btnGrantAccBlk2_Click(object sender, EventArgs e)
@@ -466,8 +463,6 @@ namespace NewPemira
                 if (check)
                 {
                     var folder = new FolderBrowserDialog();
-                    //fd.InitialDirectory = System.Environment.CurrentDirectory;
-                    //fd.Title = "Please select file to import.";
                     if (folder.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
                         string exportname = "K3MResults.csv";
@@ -483,6 +478,10 @@ namespace NewPemira
                         }
                         MessageBox.Show(msg);
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Password yang Anda Masukan Salah");
                 }
             }
         }
@@ -517,6 +516,10 @@ namespace NewPemira
                         }
                         MessageBox.Show(msg);
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Password yang Anda Masukan Salah");
                 }
             }
         }

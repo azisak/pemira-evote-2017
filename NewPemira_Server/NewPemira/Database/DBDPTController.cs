@@ -29,12 +29,12 @@ namespace NewPemira
             {
                 sqlCmd.Connection = dptTableAdapter.Connection;
                 dptTableAdapter.Fill(dptDT);
-                Console.WriteLine("Koneksi Data DPT Berhasil");
+                //Console.WriteLine("Koneksi Data DPT Berhasil");
             }
             catch (Exception e)
             {
                 MessageBox.Show("DataBase Open error\nMessage: " + e.Message + "\n\nSource: " + e.Source);
-                Console.WriteLine("Koneksi Data DPT Gagal");
+                //Console.WriteLine("Koneksi Data DPT Gagal");
             }
         }
 
@@ -99,7 +99,9 @@ namespace NewPemira
             if (found.Length == 1)
             {
                 query = "UPDATE DPT SET sudahpilih = '1' WHERE nim = '" + nim + "'";
-                return this.execute(query);
+                bool check = this.execute(query);
+                dptTableAdapter.Fill(dptDT);
+                return check;
             }
             else
             {
@@ -156,7 +158,6 @@ namespace NewPemira
             DBPemiraDataSet.DPTDataTable dptDTexport = new DBPemiraDataSet.DPTDataTable();
             EnumerableRowCollection<DBPemiraDataSet.DPTRow> DPQuery =
                 from dpt in dptDTexport.AsEnumerable()
-                //where dpt.Field<string>("sudahpilih") == "0"
                 where dpt.Field<string>("sudahpilih") == "1"
                 select dpt;
             bool isSuccess = true;

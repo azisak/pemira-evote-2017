@@ -53,11 +53,11 @@ namespace NewPemira
             {
                 errormsg += "Password 3 Tidak Boleh Kosong\n";
             }
-            if (textBox1.Text == "")
+            if (textBox4.Text == "")
             {
                 errormsg += "Password 4 Tidak Boleh Kosong\n";
             }
-            if (textBox1.Text == "")
+            if (textBox5.Text == "")
             {
                 errormsg += "Password 5 Tidak Boleh Kosong\n";
             }

@@ -27,12 +27,12 @@ namespace NewPemira
             {
                 sqlCmd.Connection = pilihanTableAdapter.Connection;
                 pilihanTableAdapter.Fill(pilihanDT);
-                Console.WriteLine("Koneksi Data Pilihan Berhasil");
+                //Console.WriteLine("Koneksi Data Pilihan Berhasil");
             }
             catch (Exception e)
             {
                 MessageBox.Show("DataBase Open error\nMessage: " + e.Message + "\n\nSource: " + e.Source);
-                Console.WriteLine("Koneksi Data Pilihan Gagal");
+                //Console.WriteLine("Koneksi Data Pilihan Gagal");
             }
         }
 
@@ -43,12 +43,12 @@ namespace NewPemira
             int result = pilihanTableAdapter.Insert(prodi, pilihan2, pilihan1);
             if (result == 1)
             {
-                MessageBox.Show("Add Data yang Sudah Memilih Berhasil");
+                //MessageBox.Show("Add Data yang Sudah Memilih Berhasil");
                 return true;
             }
             else
             {
-                MessageBox.Show("Add Data yang Sudah Memilih Gagal");
+                //MessageBox.Show("Add Data yang Sudah Memilih Gagal");
                 return false;
             }
         }
@@ -71,7 +71,7 @@ namespace NewPemira
                 try
                 {
                     WriteFile(pilihanExport, path, false, ",");
-                    MessageBox.Show("Export Pilihan KM results Successful");
+                    MessageBox.Show("Export Pilihan K3M Successful");
                     isSuccess = true;
                 }
                 catch (Exception e)
@@ -108,7 +108,7 @@ namespace NewPemira
                 {
                     
                     WriteFile(pilihanProdiExport, path, false, ",");
-                    MessageBox.Show("Export Pilihan KM Preferensi"+ pilihan +" Successful");
+                    MessageBox.Show("Export Pilihan Preferensi K3M ke-"+ pilihan +" Successful");
                     isSuccess = true;
                 }
                 catch (Exception e)
