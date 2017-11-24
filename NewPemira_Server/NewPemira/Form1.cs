@@ -84,12 +84,36 @@ namespace NewPemira
             return true;
         }
 
+        private bool isNIMAlreadyInside(string nim)
+        {
+            // search in WL
+            foreach (ListViewItem item in listViewWL.Items)
+            {
+                if (nim == item.Text)
+                    return true;
+            }
+            //Search in bilik 1
+            foreach (ListViewItem item in listViewBlk1.Items)
+            {
+                if (nim == item.Text)
+                    return true;
+            }
+            //Search in bilik 2
+            foreach (ListViewItem item in listViewBlk2.Items)
+            {
+                if (nim == item.Text)
+                    return true;
+            }
+            return false;
+        }
+
         private bool isNIMValid(string nim)
         {
             const string errNIMLEN = "PANJANG NIM HARUS 8 !";
             const string errNIMNotNumber = "NIM HARUS BERISI BILANGAN !";
             const string errNIMNotFound = "NIM TIDAK TERDAFTAR PADA TPS INI !";
             const string errNIMAlreadyVoted = "NIM SUDAH MELAKUKAN VOTING !";
+            const string errNIMAlreadyInside = "NIM SUDAH DI DALAM ANTRIAN !";
 
             // Validate NIM LENGTH ( MUST equals to 8 )
             if (nim.Length != 8)
@@ -101,6 +125,11 @@ namespace NewPemira
             else if (!isAllNumber(nim))
             {
                 MessageBox.Show(errNIMNotNumber);
+                return false;
+            }
+            else if (isNIMAlreadyInside(nim))
+            {
+                MessageBox.Show(errNIMAlreadyInside);
                 return false;
             }
             // Validate NIM must found in DP
