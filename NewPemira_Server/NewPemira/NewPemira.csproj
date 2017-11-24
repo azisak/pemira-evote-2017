@@ -60,6 +60,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BasicSetting.Designer.cs">
+      <DependentUpon>BasicSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database\DBDPTController.cs" />
     <Compile Include="Database\DBPasswordController.cs" />
     <Compile Include="Database\DBPilihanController.cs" />
@@ -98,6 +104,9 @@
     <Compile Include="ValidateExport.Designer.cs">
       <DependentUpon>ValidateExport.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BasicSetting.resx">
+      <DependentUpon>BasicSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

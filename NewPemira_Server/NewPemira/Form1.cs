@@ -21,9 +21,9 @@ namespace NewPemira
         const int N_PASSWORD = 5;
         List<string> password = new List<string>();
 
-        const string myIp = "169.254.1.3";
-        const int port1 = 13514;
-        const int port2 = 13515;
+        string myIp = "169.254.1.1";
+        int port1 = 13514;
+        int port2 = 13515;
         MyListener list1;
         MyListener list2;
 
@@ -31,6 +31,7 @@ namespace NewPemira
         {
             InitializeComponent();
             updateBtnStats();
+            
             // Check if password already inputted
             // For testing, assumed password not implemented
             if (dbPass.isTableEmpty())
@@ -54,6 +55,12 @@ namespace NewPemira
                 Console.WriteLine("Input pwd "+ idx++ +": " + password);
             }
 
+            BasicSetting bsc = new BasicSetting();
+            bsc.ShowDialog();
+            myIp = bsc.IpServer;
+            port1 = bsc.PortBilik1;
+            port2 = bsc.PortBilik2;
+            
             list1 = new MyListener(myIp, port1);
             list2 = new MyListener(myIp, port2);
 
@@ -114,11 +121,12 @@ namespace NewPemira
             }
         }
 
+
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             string nim = txtNIM.Text;
             // Free from error :)
-            if (isNIMValid(nim)) 
+            if (isNIMValid(nim))
             {
 
                 ListViewItem item = new ListViewItem(nim);
@@ -153,95 +161,36 @@ namespace NewPemira
             }
 
             updateBtnStats();
+        } 
+
+        private void clearListView(int id)
+        {
+            removeTopList(id);
+            if (id != 3) AddRemainingWLTo(id);
+            updateBtnStats();
         }
 
         private void btnClearBlk1_Click(object sender, EventArgs e)
         {
-            listViewBlk1.Items.Clear();
-
-            updateBtnStats();
+            clearListView(1);
         }
 
         private void btnClearBlk2_Click(object sender, EventArgs e)
         {
-            listViewBlk2.Items.Clear();
-
-            updateBtnStats();
+            clearListView(2);
         }
 
         private void btnClearWL_Click(object sender, EventArgs e)
         {
-            listViewWL.Items.Clear();
-
-            updateBtnStats();
+            clearListView(3);
         }
-
-        private void btnAddRemaining_Click(object sender, EventArgs e)
-        {
-            int i = 0;
-            while (listViewWL.Items.Count > 0 && (listViewBlk1.Items.Count < MAX_QUEUE_BILIK_1 || listViewBlk2.Items.Count < MAX_QUEUE_BILIK_2) )
-            {
-                ListViewItem item = new ListViewItem(listViewWL.Items[i].Text);
-                listViewWL.Items.RemoveAt(i);
-                // Put into bilik 1 if empty
-                if (listViewBlk1.Items.Count == 0)
-                {
-                    listViewBlk1.Items.Add(item);
-                }
-                // else put into bilik 2 if empty
-                else if (listViewBlk2.Items.Count == 0)
-                {
-                    listViewBlk2.Items.Add(item);
-                }
-                // else put into bilik 1 if still capable
-                else if (listViewBlk1.Items.Count < MAX_QUEUE_BILIK_1)
-                {
-                    listViewBlk1.Items.Add(item);
-                }
-                // else put into bilik 2 if still capable
-                else if (listViewBlk2.Items.Count < MAX_QUEUE_BILIK_2)
-                {
-                    listViewBlk2.Items.Add(item);
-                }
-            }
-
-            updateBtnStats();
-        }
-
+        
         // Updates the buttons status 
         private void updateBtnStats()
         {
-            if (listViewWL.Items.Count == 0)
-            {
-                btnClearWL.Enabled = false;
-                btnAddRemaining.Enabled = false;
-            } else
-            {
-                btnClearWL.Enabled = true;
-                if (listViewBlk1.Items.Count < MAX_QUEUE_BILIK_1 || listViewBlk2.Items.Count < MAX_QUEUE_BILIK_2)
-                {
-                    btnAddRemaining.Enabled = true;
-                }
-                else
-                {
-                    btnAddRemaining.Enabled = false;
-                }
-            }
-            if (listViewBlk1.Items.Count == 0)
-            {
-                btnClearBlk1.Enabled = false;
-            } else
-            {
-                btnClearBlk1.Enabled = true;
-            }
-            if (listViewBlk2.Items.Count == 0)
-            {
-                btnClearBlk2.Enabled = false;
-            } else
-            {
-                btnClearBlk2.Enabled = true;
-            }
-            
+            btnClearWL.Enabled = (listViewWL.Items.Count > 0);
+            btnClearBlk1.Enabled = (listViewBlk1.Items.Count > 0);
+            btnClearBlk2.Enabled = (listViewBlk2.Items.Count > 0);
         }
 
         private void enableClearBilik(int id)
@@ -295,10 +244,14 @@ namespace NewPemira
             if (id == 1)
             {
                 listViewBlk1.Items[0].Remove();
-            } else // id == 2
+            } else if (id == 2)// Bilik 2
             {
                 listViewBlk2.Items[0].Remove();
+            } else if (id == 3) // Waiting List
+            {
+                listViewWL.Items[0].Remove();
             }
+            updateBtnStats();
         }
 
         private void setSudahPilih(string nim)
@@ -311,6 +264,28 @@ namespace NewPemira
             dbPilihan.tambahPilihanKM(prodi, pil1, pil2);
         }
 
+        private void AddRemainingWLTo(int id)
+        {
+            if (listViewWL.Items.Count > 0)
+            {
+                if (id == 1)
+                {
+                    string nimToMove = listViewWL.Items[0].Text;
+                    Console.WriteLine("Nim to move : " + nimToMove);
+                    ListViewItem item = new ListViewItem(nimToMove);
+                    listViewBlk1.Items.Add(item);
+                }
+                else
+                {
+                    string nimToMove = listViewWL.Items[0].Text;
+                    Console.WriteLine("Nim to move : " + nimToMove);
+                    ListViewItem item = new ListViewItem(nimToMove);
+                    listViewBlk2.Items.Add(item);
+                }
+                removeTopList(3);
+            }
+        }
+
         private void processNIMBilik_1(Object _nim)
         {
             Action<int> disableClear = disableClearBilik;
@@ -318,9 +293,13 @@ namespace NewPemira
             Action<int> disableGrant = disableGrantBilik;
             Action<int> enableGrant = enableGrantBilik;
             Action<int> remTop = removeTopList;
+            Action<int> addremwlto = AddRemainingWLTo;
+            Action<int> clearlistview = clearListView;
             Action<string> setPilih = setSudahPilih;
             Action<string, string, string> tambahPilihan = acceptVote;
             Action updBtn = updateBtnStats;
+
+            
             Invoke(disableGrant, 1);
             Invoke(disableClear, 1);
             string nim = (string)_nim;
@@ -342,8 +321,8 @@ namespace NewPemira
                 string prodi = nim.Substring(0, 3);
                 Invoke(tambahPilihan, prodi, tokens[0], tokens[1]);
                 Console.WriteLine("Pref1 : " + tokens[0] + " Pref2 : " + tokens[1]);
-                Invoke(remTop, 1);
                 Invoke(setPilih, nim);
+                Invoke(clearlistview, 1);
             } catch (Exception ex)
             {
                 MessageBox.Show("Coba lagi");
@@ -364,9 +343,14 @@ namespace NewPemira
             Action<int> disableGrant = disableGrantBilik;
             Action<int> enableGrant = enableGrantBilik;
             Action<int> remTop = removeTopList;
+            Action<int> addremwlto = AddRemainingWLTo;
+            Action<int> clearlistview = clearListView;
             Action<string> setPilih = setSudahPilih;
             Action<string, string, string> tambahPilihan = acceptVote;
             Action updBtn = updateBtnStats;
+
+            
+
             Invoke(disableGrant, 2);
             Invoke(disableClear, 2);
             string nim = (string)_nim;
@@ -388,8 +372,8 @@ namespace NewPemira
                 string prodi = nim.Substring(0, 3);
                 Invoke(tambahPilihan, prodi, tokens[0], tokens[1]);
                 Console.WriteLine("Pref1 : " + tokens[0] + " Pref2 : " + tokens[1]);
-                Invoke(remTop, 2);
                 Invoke(setPilih, nim);
+                Invoke(clearlistview, 2);
             }
             catch (Exception ex)
             {
@@ -402,7 +386,6 @@ namespace NewPemira
                 Invoke(enableClear, 2);
                 Invoke(updBtn);
             }
-
         }
 
         private void btnGrantAccBlk1_Click(object sender, EventArgs e)
