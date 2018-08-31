@@ -33,5 +33,12 @@ namespace PemiraClient
         {
             this.Close();
         }
+
+        private void window_on_key_press(object sender, KeyPressEventArgs e)
+        {
+            const int ENTER_ASCII = 13;
+            if (e.KeyChar == ENTER_ASCII)
+                this.Close();
+        }
     }
 }
