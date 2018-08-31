@@ -173,7 +173,7 @@ namespace PemiraClient
             switch(stateCode)
             {
                 case WELCOME:
-                    pictureBox.BackgroundImage = Properties.Resources.screen_welcome;
+                    pictureBox.BackgroundImage = Properties.Resources.referendum_welcome;
                     break;
                 case INSTRUCTION:
                     pictureBox.BackgroundImage = Properties.Resources.screen_instructions;

@@ -54,7 +54,7 @@
             this.label_NIM.BackColor = System.Drawing.Color.Brown;
             this.label_NIM.Font = new System.Drawing.Font("Elephant", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_NIM.ForeColor = System.Drawing.Color.White;
-            this.label_NIM.Location = new System.Drawing.Point(438, 406);
+            this.label_NIM.Location = new System.Drawing.Point(439, 370);
             this.label_NIM.Name = "label_NIM";
             this.label_NIM.Size = new System.Drawing.Size(425, 49);
             this.label_NIM.TabIndex = 8;
@@ -75,7 +75,7 @@
             // 
             // BackgroundContainer
             // 
-            this.BackgroundContainer.BackgroundImage = global::PemiraClient.Properties.Resources.screen_welcome;
+            this.BackgroundContainer.BackgroundImage = global::PemiraClient.Properties.Resources.referendum_welcome;
             this.BackgroundContainer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BackgroundContainer.Location = new System.Drawing.Point(0, 0);
             this.BackgroundContainer.Name = "BackgroundContainer";
@@ -100,7 +100,7 @@
             this.hub_operator.BackColor = System.Drawing.Color.White;
             this.hub_operator.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.hub_operator.Font = new System.Drawing.Font("Arial Rounded MT Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hub_operator.Location = new System.Drawing.Point(433, 406);
+            this.hub_operator.Location = new System.Drawing.Point(439, 370);
             this.hub_operator.Name = "hub_operator";
             this.hub_operator.Size = new System.Drawing.Size(430, 49);
             this.hub_operator.TabIndex = 13;
