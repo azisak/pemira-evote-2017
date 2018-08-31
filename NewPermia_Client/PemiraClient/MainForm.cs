@@ -62,7 +62,7 @@ namespace PemiraClient
             Action<Point> setTimerLocation = _setTimerLocation;
             Action<Label, string> setLabelText = _setLabelText;
 
-            connectionManager = new ConnectionManager(IP_ADDRESS, PORT_NUMBER);
+            //connectionManager = new ConnectionManager(IP_ADDRESS, PORT_NUMBER);
             while (true)
             {
                 state.switchState(State.WELCOME);
@@ -70,15 +70,15 @@ namespace PemiraClient
 
                 Invoke(showLabel, hub_operator, true);
 
-                ReceiveResponse response = new ReceiveResponse(false, "");
-                while (!response.status)
-                {
-                    response = connectionManager.recv();
-                }
+                //ReceiveResponse response = new ReceiveResponse(false, "");
+                //while (!response.status)
+                //{
+                //    response = connectionManager.recv();
+                //}
 
                 Invoke(showLabel, hub_operator, false);
 
-                Invoke(setLabelText, label_NIM, response.value);
+                //Invoke(setLabelText, label_NIM, response.value);
                 Invoke(setLabelText, label_NIM, "13515000");
                 Invoke(showLabel, label_NIM, true);
 
@@ -112,12 +112,14 @@ namespace PemiraClient
                                 break;
                             case State.CONFIRMATION_1_OVER_2:
                                 new Thread(triggerTimerInOverview).Start();
+                                Invoke(showLabel, label_timer_options_1, false);
                                 Invoke(showLabel, label_timer_options_2, false);
                                 Invoke(setTimerLocation, rightBottom);
                                 Invoke(showLabel, label_timer_overview, true);
                                 break;
                             case State.CONFIRMATION_2_OVER_1:
                                 new Thread(triggerTimerInOverview).Start();
+                                Invoke(showLabel, label_timer_options_1, false);
                                 Invoke(showLabel, label_timer_options_2, false);
                                 Invoke(setTimerLocation, rightBottom);
                                 Invoke(showLabel, label_timer_overview, true);

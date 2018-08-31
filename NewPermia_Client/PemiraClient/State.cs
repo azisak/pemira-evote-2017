@@ -80,12 +80,12 @@ namespace PemiraClient
                         if (keypress == KEY_1)
                         {
                             decision[0] = VAL_1;
-                            switchState(SECOND_PREF_1_CHOSEN);
+                            switchState(CONFIRMATION_1_OVER_2);
                         }
                         else if (keypress == KEY_2)
                         {
                             decision[0] = VAL_2;
-                            switchState(SECOND_PREF_2_CHOSEN);
+                            switchState(CONFIRMATION_2_OVER_1);
                         }
                         break;
                     case SECOND_PREF_1_CHOSEN:
