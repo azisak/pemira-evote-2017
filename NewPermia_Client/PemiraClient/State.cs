@@ -89,31 +89,23 @@ namespace PemiraClient
                         }
                         break;
                     case SECOND_PREF_1_CHOSEN:
-                        if (keypress == KEY_2)
-                        {
-                            decision[1] = VAL_2;
-                            switchState(CONFIRMATION_1_OVER_2);
-                        }
+                        switchState(CONFIRMATION_1_OVER_2);
                         break;
                     case SECOND_PREF_2_CHOSEN:
-                        if (keypress == KEY_1)
-                        {
-                            decision[1] = VAL_1;
-                            switchState(CONFIRMATION_2_OVER_1);
-                        }
-					    break;
-				    case CONFIRMATION_1_ONLY:
+                        switchState(CONFIRMATION_2_OVER_1);
+          					    break;
+        				    case CONFIRMATION_1_ONLY:
                     case CONFIRMATION_1_OVER_2:
                     case CONFIRMATION_2_ONLY:
                     case CONFIRMATION_2_OVER_1:
                     case CONFIRMATION_ABSTAIN:
                         clarifyDecision(keypress);
-					    break;
+					              break;
                     case THANKYOU:
                         switchState(THANKYOU);
                         break;
                 }
-			    keypress = DEFAULT_KEY;
+  			    keypress = DEFAULT_KEY;
             }
         }
 
