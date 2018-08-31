@@ -302,7 +302,7 @@
             this.btnExportDP.Name = "btnExportDP";
             this.btnExportDP.Size = new System.Drawing.Size(151, 64);
             this.btnExportDP.TabIndex = 8;
-            this.btnExportDP.Text = "Export DP";
+            this.btnExportDP.Text = "Export Daftar Pemilih";
             this.btnExportDP.UseVisualStyleBackColor = true;
             this.btnExportDP.Click += new System.EventHandler(this.btnExportDP_Click);
             // 

@@ -60,7 +60,8 @@ namespace NewPemira
                 try
                 {
                     WriteFile(pilihanExport, path, false, ",");
-                    MessageBox.Show("Export Pilihan K3M Successful");
+                    //MessageBox.Show("Export Pilihan K3M Successful");
+                    MessageBox.Show("Export Hasil Referendum Successful");
                     isSuccess = true;
                 }
                 catch (Exception e)

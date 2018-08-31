@@ -188,14 +188,12 @@ namespace NewPemira
                     // else put into waiting list
                 else 
                 {
-                    
+
                     listViewWL.Items.Add(item);
                 }
-                
                 txtNIM.Clear();
             }
-
-            updateBtnStats();
+           updateBtnStats();
         } 
 
         private void clearListView(int id)
@@ -224,8 +222,14 @@ namespace NewPemira
         private void updateBtnStats()
         {
             btnClearWL.Enabled = (listViewWL.Items.Count > 0);
-            btnClearBlk1.Enabled = (listViewBlk1.Items.Count > 0);
-            btnClearBlk2.Enabled = (listViewBlk2.Items.Count > 0);
+            if (btnGrantAccBlk1.Enabled == true)
+            {
+                btnClearBlk1.Enabled = (listViewBlk1.Items.Count > 0);
+            }
+            if (btnGrantAccBlk2.Enabled == true)
+            {
+                btnClearBlk2.Enabled = (listViewBlk2.Items.Count > 0);
+            }
         }
 
         private void enableClearBilik(int id)
@@ -334,7 +338,6 @@ namespace NewPemira
             Action<string, string> tambahPilihan = acceptVote;
             Action updBtn = updateBtnStats;
 
-            
             Invoke(disableGrant, 1);
             Invoke(disableClear, 1);
             string nim = (string)_nim;
@@ -352,11 +355,14 @@ namespace NewPemira
                 Console.WriteLine("Message received : " + msg);
                 // TODO update database 
                 // kemungkinan 1,2 / 1,2
-                String[] tokens = msg.Split(',');
-                string prodi = nim.Substring(0, 3);
-                Invoke(tambahPilihan, prodi, tokens[0], tokens[1]);
-                Console.WriteLine("Pref1 : " + tokens[0] + " Pref2 : " + tokens[1]);
-                Invoke(setPilih, nim);
+                if (!msg.Equals("ERROR"))
+                {
+                    String[] tokens = msg.Split(',');
+                    string prodi = nim.Substring(0, 3);
+                    Invoke(tambahPilihan, prodi, tokens[0]);
+                    Console.WriteLine("Pref1 : " + tokens[0] + " Pref2 : " + tokens[1]);
+                    Invoke(setPilih, nim);
+                }
                 Invoke(clearlistview, 1);
             } catch (Exception ex)
             {
@@ -367,8 +373,7 @@ namespace NewPemira
                 Invoke(enableGrant, 1);
                 Invoke(enableClear, 1);
                 Invoke(updBtn);
-            }
-        
+            }        
         }
 
         private void processNIMBilik_2(Object _nim)
@@ -383,8 +388,6 @@ namespace NewPemira
             Action<string> setPilih = setSudahPilih;
             Action<string, string> tambahPilihan = acceptVote;
             Action updBtn = updateBtnStats;
-
-            
 
             Invoke(disableGrant, 2);
             Invoke(disableClear, 2);
@@ -403,11 +406,14 @@ namespace NewPemira
                 Console.WriteLine("Message received : " + msg);
                 // TODO update database 
                 // kemungkinan 1,2 / 1,x / dst
-                String[] tokens = msg.Split(',');
-                string prodi = nim.Substring(0, 3);
-                Invoke(tambahPilihan, prodi, tokens[0], tokens[1]);
-                Console.WriteLine("Pref1 : " + tokens[0] + " Pref2 : " + tokens[1]);
-                Invoke(setPilih, nim);
+                if (!msg.Equals("ERROR"))
+                {
+                    String[] tokens = msg.Split(',');
+                    string prodi = nim.Substring(0, 3);
+                    Invoke(tambahPilihan, prodi, tokens[0]);
+                    Console.WriteLine("Pref1 : " + tokens[0] + " Pref2 : " + tokens[1]);
+                    Invoke(setPilih, nim);
+                }
                 Invoke(clearlistview, 2);
             }
             catch (Exception ex)
