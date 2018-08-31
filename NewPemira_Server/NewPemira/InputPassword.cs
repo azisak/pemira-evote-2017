@@ -16,7 +16,6 @@ namespace NewPemira
         public InputPassword(int i)
         {
             InitializeComponent();
-            labelPass.Text += i.ToString();
         }
 
         public string Pass

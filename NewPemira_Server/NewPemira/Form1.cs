@@ -18,7 +18,7 @@ namespace NewPemira
         DBPilihanController dbPilihan = new DBPilihanController();
         const int MAX_QUEUE_BILIK_1 = 2;
         const int MAX_QUEUE_BILIK_2 = 2;
-        const int N_PASSWORD = 6;
+        const int N_PASSWORD = 1;
         List<string> password = new List<string>();
 
         string myIp = "169.254.1.1";
@@ -294,9 +294,9 @@ namespace NewPemira
             dbDPT.setSudahPilih(nim);
         }
 
-        private void acceptVote(string prodi, string pil1, string pil2)
+        private void acceptVote(string prodi, string pilihan)
         {
-            dbPilihan.tambahPilihanKM(prodi, pil1, pil2);
+            dbPilihan.tambahPilihanKM(prodi, pilihan);
         }
 
         private void AddRemainingWLTo(int id)
@@ -331,7 +331,7 @@ namespace NewPemira
             Action<int> addremwlto = AddRemainingWLTo;
             Action<int> clearlistview = clearListView;
             Action<string> setPilih = setSudahPilih;
-            Action<string, string, string> tambahPilihan = acceptVote;
+            Action<string, string> tambahPilihan = acceptVote;
             Action updBtn = updateBtnStats;
 
             
@@ -381,7 +381,7 @@ namespace NewPemira
             Action<int> addremwlto = AddRemainingWLTo;
             Action<int> clearlistview = clearListView;
             Action<string> setPilih = setSudahPilih;
-            Action<string, string, string> tambahPilihan = acceptVote;
+            Action<string, string> tambahPilihan = acceptVote;
             Action updBtn = updateBtnStats;
 
             
@@ -502,50 +502,12 @@ namespace NewPemira
                     var folder = new FolderBrowserDialog();
                     if (folder.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
-                        string exportname = "K3MResults.csv";
+                        string exportname = "HasilReferendumK3M2018.csv";
 
                         string selectedPath = folder.SelectedPath;
                         string msg = "";
                         string pathDp = selectedPath + @"\" + exportname;
                         if (dbPilihan.exportCSVPilihanKM(pathDp))
-                        {
-                            msg += "Export Successful!\n";
-                            msg += "File Exported to: " + selectedPath + "\n";
-                            msg += "File name: " + exportname;
-                        }
-                        MessageBox.Show(msg);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Password yang Anda Masukan Salah");
-                }
-            }
-        }
-
-        // Belum di implementasi
-        private void btnExpPerProdi_Click(object sender, EventArgs e)
-        {
-            ValidateExport validate = new ValidateExport();
-            validate.ShowDialog();
-            bool check = false;
-            if (!validate.getCancel())
-            {
-                check = dbPass.checkPassword(validate.getPassword());
-                if (check)
-                {
-                    PilihExport pil = new PilihExport();
-                    pil.ShowDialog();
-                    int pilihan = pil.getSelected();
-                    var fd = new FolderBrowserDialog();
-                    if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    {
-                        string exportname = "K3MResultsPreferensi"+ pilihan +".csv";
-
-                        string selectedPath = fd.SelectedPath;
-                        string msg = "";
-                        string pathDp = selectedPath + @"\" + exportname;
-                        if (dbPilihan.exportCSVPilihanKMPreferensi(pathDp, pilihan))
                         {
                             msg += "Export Successful!\n";
                             msg += "File Exported to: " + selectedPath + "\n";
@@ -579,6 +541,21 @@ namespace NewPemira
                 }
                 MessageBox.Show(msg);
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
         // === IMPORT AND EXPORT DATABASE === //

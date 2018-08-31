@@ -36,17 +36,10 @@ namespace NewPemira
 
         /*
          */
-        public bool tambahPilihanKM(string prodi, string pilihan1, string pilihan2)
+        public bool tambahPilihanKM(string prodi, string pilihan)
         {
-            int result = pilihanTableAdapter.Insert(prodi, pilihan2, pilihan1);
-            if (result == 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            int result = pilihanTableAdapter.Insert(prodi, pilihan);
+            return result == 1;
         }
 
         /* Export CSV tanpa prodi
@@ -63,7 +56,7 @@ namespace NewPemira
             {
                 pilihanTableAdapter.Fill(dtPilihan);
                 DataView dv = pilihanQuery.AsDataView();
-                pilihanExport = dv.ToTable(false, "prodi", "pilihan_1", "pilihan_2");
+                pilihanExport = dv.ToTable(false, "prodi", "pilihan");
                 try
                 {
                     WriteFile(pilihanExport, path, false, ",");

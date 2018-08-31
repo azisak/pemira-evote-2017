@@ -34,9 +34,9 @@ namespace NewPemira
             }
         }
 
-        public bool addPassword(string pass1, string pass2, string pass3, string pass4, string pass5, string pass6)
+        public bool addPassword(string password)
         {
-            int result = passwordTableAdapter.Insert(pass1, pass2, pass3, pass4, pass5, pass6);
+            int result = passwordTableAdapter.Insert(password);
             if (result == 1)
             {
                 MessageBox.Show("Add Password Berhasil");
@@ -53,7 +53,7 @@ namespace NewPemira
         {
             try
             {
-                int result = passwordTableAdapter.Insert(password[0], password[1], password[2], password[3], password[4], password[5]);
+                int result = passwordTableAdapter.Insert(password[0]);
                 if (result == 1)
                 {
                     MessageBox.Show("Add Password Berhasil");
@@ -74,36 +74,21 @@ namespace NewPemira
 
         public bool isTableEmpty()
         {
-            if (passwordDT.Count == 0)
-            {
-                return true;
-            } else
-            {
-                return false;
-            }
+            return passwordDT.Count == 0;
         }
 
         public bool checkPassword(List<string> password)
         {
             bool check = true;
-            string find = "password_1 = '" + password[0] + "'";
+            string find = "password = '" + password[0] + "'";
             DataRow[] found = passwordDT.Select(find);
 
             if (found.Length == 1)
             {
-                for (int j = 0; j < 5; j++)
+                string column = "password";
+                if (!password.Contains(found[0][column].ToString()))
                 {
-                    string col = "password_" + (j + 1);
-                }
-                int i = 1;
-                while (i < 6 && check)
-                {
-                    string col = "password_" + (i + 1);
-                    if (!password.Contains(found[0][col].ToString()))
-                    {
-                        check = false;
-                    }
-                    i++;
+                    check = false;
                 }
             }
             else

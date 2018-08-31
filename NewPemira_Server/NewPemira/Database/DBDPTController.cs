@@ -49,24 +49,18 @@ namespace NewPemira
                 sqlCmd.Connection.Open();
                 sqlCmd.ExecuteNonQuery();
                 sqlCmd.Connection.Close();
-                return true;
             }
             catch (Exception e)
             {
                 MessageBox.Show("Query error\nmessage: " + e.Message + "\n\nsource:" + e.Source);
                 return false;
             }
+            return true;
         }
 
         public bool isEmptyDPT()
         {
-            if (dptDT.Count == 0)
-            {
-                return true;
-            } else
-            {
-                return false;
-            }
+            return dptDT.Count == 0;
         }
 
        /*
@@ -76,28 +70,14 @@ namespace NewPemira
         {
             string query = "nim = '" + nim + "'";
             DataRow[] found = dptDT.Select(query);
-            if (found.Length == 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return found.Length == 1;
         }
 
         public bool checkBelumPilih(string nim)
         {
             string query = "nim = '" + nim + "' and sudahpilih = '0'";
             DataRow[] found = dptDT.Select(query);
-            if (found.Length == 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return found.Length == 1;
         }
 
         /*
