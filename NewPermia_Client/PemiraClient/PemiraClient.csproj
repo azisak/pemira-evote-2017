@@ -162,6 +162,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo_pemira4_472_icon.ico" />
+    <None Include="Resources\validasi-turun.png" />
+    <None Include="Resources\validasi-lanjut.png" />
+    <None Include="Resources\validasi-abstain.png" />
+    <None Include="Resources\thanks.png" />
+    <None Include="Resources\pilihan-turun.png" />
+    <None Include="Resources\pilihan-lanjut.png" />
+    <None Include="Resources\pilihan-default.png" />
+    <None Include="Resources\instruktur.png" />
     <None Include="Resources\welcome.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -62,7 +62,7 @@ namespace PemiraClient
             Action<Point> setTimerLocation = _setTimerLocation;
             Action<Label, string> setLabelText = _setLabelText;
 
-            //connectionManager = new ConnectionManager(IP_ADDRESS, PORT_NUMBER);
+            connectionManager = new ConnectionManager(IP_ADDRESS, PORT_NUMBER);
             while (true)
             {
                 state.switchState(State.WELCOME);
@@ -70,16 +70,16 @@ namespace PemiraClient
 
                 Invoke(showLabel, hub_operator, true);
 
-                //ReceiveResponse response = new ReceiveResponse(false, "");
-                //while (!response.status)
-                //{
-                //    response = connectionManager.recv();
-                //}
+                ReceiveResponse response = new ReceiveResponse(false, "");
+                while (!response.status)
+                {
+                    response = connectionManager.recv();
+                }
 
                 Invoke(showLabel, hub_operator, false);
 
-                //Invoke(setLabelText, label_NIM, response.value);
-                Invoke(setLabelText, label_NIM, "13515000");
+                Invoke(setLabelText, label_NIM, response.value);
+                //Invoke(setLabelText, label_NIM, "13515000");
                 Invoke(showLabel, label_NIM, true);
 
                 bool sessionExpired = false;

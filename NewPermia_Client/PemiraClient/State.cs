@@ -176,22 +176,22 @@ namespace PemiraClient
                     pictureBox.BackgroundImage = Properties.Resources.referendum_welcome;
                     break;
                 case INSTRUCTION:
-                    pictureBox.BackgroundImage = Properties.Resources.screen_instructions;
+                    pictureBox.BackgroundImage = Properties.Resources.referendum_instruktur;
                     break;
                 case FIRST_PREF_OPTIONS:
-                    pictureBox.BackgroundImage = Properties.Resources.screen_first_pref_options;
+                    pictureBox.BackgroundImage = Properties.Resources.referendum_pilihan_default;
                     break;
                 case SECOND_PREF_1_CHOSEN:
-                    pictureBox.BackgroundImage = Properties.Resources.screen_second_pref_1_chosen;
+                    pictureBox.BackgroundImage = Properties.Resources.referndum_pilihan_turun;
                     break;
                 case SECOND_PREF_2_CHOSEN:
-                    pictureBox.BackgroundImage = Properties.Resources.screen_second_pref_2_chosen;
+                    pictureBox.BackgroundImage = Properties.Resources.referendum_pilihan_lanjut;
                     break;
                 case CONFIRMATION_1_OVER_2:
-                    pictureBox.BackgroundImage = Properties.Resources.screen_confirmation_1_over_2;
+                    pictureBox.BackgroundImage = Properties.Resources.referendum_validasi_turun;
                     break;
                 case CONFIRMATION_2_OVER_1:
-                    pictureBox.BackgroundImage = Properties.Resources.screen_confirmation_2_over_1;
+                    pictureBox.BackgroundImage = Properties.Resources.referendum_validasi_lanjut;
                     break;
                 case CONFIRMATION_1_ONLY:
                     pictureBox.BackgroundImage = Properties.Resources.screen_confirmation_1_only;
@@ -200,10 +200,10 @@ namespace PemiraClient
                     pictureBox.BackgroundImage = Properties.Resources.screen_confirmation_2_only;
                     break;
                 case CONFIRMATION_ABSTAIN:
-                    pictureBox.BackgroundImage = Properties.Resources.screen_confirmation_abstain;
+                    pictureBox.BackgroundImage = Properties.Resources.referendum_validasi_abstain;
                     break;
                 case THANKYOU:
-                    pictureBox.BackgroundImage = Properties.Resources.screen_thankyou;
+                    pictureBox.BackgroundImage = Properties.Resources.referendum_thanks;
                     break;
             }
         }

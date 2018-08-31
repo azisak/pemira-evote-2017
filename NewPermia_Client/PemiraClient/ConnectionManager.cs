@@ -10,36 +10,50 @@ namespace PemiraClient
 {
     class ConnectionManager
     {
-        private int MAX_RECV_BUFFER = 100;
+        private int MAX_RECV_BUFFER = 8;
 
         private TcpClient client;
         private Stream clientStream;
+        private string ipAddr;
+        private int port;
 
         public ConnectionManager(string ipAddr, int port)
+        {
+            this.ipAddr = ipAddr;
+            this.port = port;
+
+            createConnection();
+        }
+
+        private void createConnection()
         {
             Console.WriteLine("Connecting to " + ipAddr + ":" + port);
             client = new TcpClient();
 
             bool notConnected = true;
-            while (notConnected) {
+            while (notConnected)
+            {
                 try
                 {
                     client.Connect(ipAddr, port);
                     Console.WriteLine("Connected.");
                     notConnected = false;
-                } catch(SocketException exp)
+                }
+                catch (SocketException exp)
                 {
                     Console.WriteLine("Unable to connect.");
                 }
             }
 
-            try {
+            try
+            {
                 clientStream = client.GetStream();
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace);
             }
-        }
+        } 
 
         public bool send(string msg)
         {
@@ -63,6 +77,7 @@ namespace PemiraClient
                 return new ReceiveResponse(true, System.Text.Encoding.ASCII.GetString(msgBytes));
             } catch(Exception e)
             {
+                createConnection();
                 return new ReceiveResponse(false, "");
             }
         }
