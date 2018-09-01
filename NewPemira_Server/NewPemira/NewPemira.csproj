@@ -90,12 +90,6 @@
       <DependentUpon>InputPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="MyListener.cs" />
-    <Compile Include="PilihExport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PilihExport.Designer.cs">
-      <DependentUpon>PilihExport.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidateExport.cs">
@@ -112,9 +106,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InputPassword.resx">
       <DependentUpon>InputPassword.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PilihExport.resx">
-      <DependentUpon>PilihExport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -178,6 +169,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>DBPemira.mdf</DependentUpon>
     </Content>
+    <Content Include="Resources\KongresLogo.jpeg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

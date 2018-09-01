@@ -949,17 +949,7 @@ namespace NewPemira {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class PasswordDataTable : global::System.Data.TypedTableBase<PasswordRow> {
             
-            private global::System.Data.DataColumn columnpassword_1;
-            
-            private global::System.Data.DataColumn columnpassword_2;
-            
-            private global::System.Data.DataColumn columnpassword_3;
-            
-            private global::System.Data.DataColumn columnpassword_4;
-            
-            private global::System.Data.DataColumn columnpassword_5;
-            
-            private global::System.Data.DataColumn columnpassword_6;
+            private global::System.Data.DataColumn columnpassword;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -996,49 +986,9 @@ namespace NewPemira {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn password_1Column {
+            public global::System.Data.DataColumn passwordColumn {
                 get {
-                    return this.columnpassword_1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn password_2Column {
-                get {
-                    return this.columnpassword_2;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn password_3Column {
-                get {
-                    return this.columnpassword_3;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn password_4Column {
-                get {
-                    return this.columnpassword_4;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn password_5Column {
-                get {
-                    return this.columnpassword_5;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn password_6Column {
-                get {
-                    return this.columnpassword_6;
+                    return this.columnpassword;
                 }
             }
             
@@ -1079,15 +1029,10 @@ namespace NewPemira {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public PasswordRow AddPasswordRow(string password_1, string password_2, string password_3, string password_4, string password_5, string password_6) {
+            public PasswordRow AddPasswordRow(string password) {
                 PasswordRow rowPasswordRow = ((PasswordRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        password_1,
-                        password_2,
-                        password_3,
-                        password_4,
-                        password_5,
-                        password_6};
+                        password};
                 rowPasswordRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPasswordRow);
                 return rowPasswordRow;
@@ -1110,41 +1055,16 @@ namespace NewPemira {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnpassword_1 = base.Columns["password_1"];
-                this.columnpassword_2 = base.Columns["password_2"];
-                this.columnpassword_3 = base.Columns["password_3"];
-                this.columnpassword_4 = base.Columns["password_4"];
-                this.columnpassword_5 = base.Columns["password_5"];
-                this.columnpassword_6 = base.Columns["password_6"];
+                this.columnpassword = base.Columns["password"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnpassword_1 = new global::System.Data.DataColumn("password_1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpassword_1);
-                this.columnpassword_2 = new global::System.Data.DataColumn("password_2", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpassword_2);
-                this.columnpassword_3 = new global::System.Data.DataColumn("password_3", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpassword_3);
-                this.columnpassword_4 = new global::System.Data.DataColumn("password_4", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpassword_4);
-                this.columnpassword_5 = new global::System.Data.DataColumn("password_5", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpassword_5);
-                this.columnpassword_6 = new global::System.Data.DataColumn("password_6", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpassword_6);
-                this.columnpassword_1.AllowDBNull = false;
-                this.columnpassword_1.MaxLength = 20;
-                this.columnpassword_2.AllowDBNull = false;
-                this.columnpassword_2.MaxLength = 20;
-                this.columnpassword_3.AllowDBNull = false;
-                this.columnpassword_3.MaxLength = 20;
-                this.columnpassword_4.AllowDBNull = false;
-                this.columnpassword_4.MaxLength = 20;
-                this.columnpassword_5.AllowDBNull = false;
-                this.columnpassword_5.MaxLength = 20;
-                this.columnpassword_6.AllowDBNull = false;
-                this.columnpassword_6.MaxLength = 20;
+                this.columnpassword = new global::System.Data.DataColumn("password", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpassword);
+                this.columnpassword.AllowDBNull = false;
+                this.columnpassword.MaxLength = 20;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1280,9 +1200,7 @@ namespace NewPemira {
             
             private global::System.Data.DataColumn columnprodi;
             
-            private global::System.Data.DataColumn columnpilihan_2;
-            
-            private global::System.Data.DataColumn columnpilihan_1;
+            private global::System.Data.DataColumn columnpilihan;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -1327,17 +1245,9 @@ namespace NewPemira {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn pilihan_2Column {
+            public global::System.Data.DataColumn pilihanColumn {
                 get {
-                    return this.columnpilihan_2;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn pilihan_1Column {
-                get {
-                    return this.columnpilihan_1;
+                    return this.columnpilihan;
                 }
             }
             
@@ -1378,12 +1288,11 @@ namespace NewPemira {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public PilihanRow AddPilihanRow(string prodi, string pilihan_2, string pilihan_1) {
+            public PilihanRow AddPilihanRow(string prodi, string pilihan) {
                 PilihanRow rowPilihanRow = ((PilihanRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         prodi,
-                        pilihan_2,
-                        pilihan_1};
+                        pilihan};
                 rowPilihanRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPilihanRow);
                 return rowPilihanRow;
@@ -1407,8 +1316,7 @@ namespace NewPemira {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnprodi = base.Columns["prodi"];
-                this.columnpilihan_2 = base.Columns["pilihan_2"];
-                this.columnpilihan_1 = base.Columns["pilihan_1"];
+                this.columnpilihan = base.Columns["pilihan"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1416,16 +1324,12 @@ namespace NewPemira {
             private void InitClass() {
                 this.columnprodi = new global::System.Data.DataColumn("prodi", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnprodi);
-                this.columnpilihan_2 = new global::System.Data.DataColumn("pilihan_2", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpilihan_2);
-                this.columnpilihan_1 = new global::System.Data.DataColumn("pilihan_1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpilihan_1);
+                this.columnpilihan = new global::System.Data.DataColumn("pilihan", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpilihan);
                 this.columnprodi.AllowDBNull = false;
                 this.columnprodi.MaxLength = 3;
-                this.columnpilihan_2.AllowDBNull = false;
-                this.columnpilihan_2.MaxLength = 1;
-                this.columnpilihan_1.AllowDBNull = false;
-                this.columnpilihan_1.MaxLength = 1;
+                this.columnpilihan.AllowDBNull = false;
+                this.columnpilihan.MaxLength = 1;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1670,67 +1574,12 @@ namespace NewPemira {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string password_1 {
+            public string password {
                 get {
-                    return ((string)(this[this.tablePassword.password_1Column]));
+                    return ((string)(this[this.tablePassword.passwordColumn]));
                 }
                 set {
-                    this[this.tablePassword.password_1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string password_2 {
-                get {
-                    return ((string)(this[this.tablePassword.password_2Column]));
-                }
-                set {
-                    this[this.tablePassword.password_2Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string password_3 {
-                get {
-                    return ((string)(this[this.tablePassword.password_3Column]));
-                }
-                set {
-                    this[this.tablePassword.password_3Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string password_4 {
-                get {
-                    return ((string)(this[this.tablePassword.password_4Column]));
-                }
-                set {
-                    this[this.tablePassword.password_4Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string password_5 {
-                get {
-                    return ((string)(this[this.tablePassword.password_5Column]));
-                }
-                set {
-                    this[this.tablePassword.password_5Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string password_6 {
-                get {
-                    return ((string)(this[this.tablePassword.password_6Column]));
-                }
-                set {
-                    this[this.tablePassword.password_6Column] = value;
+                    this[this.tablePassword.passwordColumn] = value;
                 }
             }
         }
@@ -1762,23 +1611,12 @@ namespace NewPemira {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string pilihan_2 {
+            public string pilihan {
                 get {
-                    return ((string)(this[this.tablePilihan.pilihan_2Column]));
+                    return ((string)(this[this.tablePilihan.pilihanColumn]));
                 }
                 set {
-                    this[this.tablePilihan.pilihan_2Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string pilihan_1 {
-                get {
-                    return ((string)(this[this.tablePilihan.pilihan_1Column]));
-                }
-                set {
-                    this[this.tablePilihan.pilihan_1Column] = value;
+                    this[this.tablePilihan.pilihanColumn] = value;
                 }
             }
         }
@@ -2759,25 +2597,13 @@ SELECT nim, nama, sudahpilih FROM DPT WHERE (nim = @nim)";
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Password";
-            tableMapping.ColumnMappings.Add("password_1", "password_1");
-            tableMapping.ColumnMappings.Add("password_2", "password_2");
-            tableMapping.ColumnMappings.Add("password_3", "password_3");
-            tableMapping.ColumnMappings.Add("password_4", "password_4");
-            tableMapping.ColumnMappings.Add("password_5", "password_5");
-            tableMapping.ColumnMappings.Add("password_6", "password_6");
+            tableMapping.ColumnMappings.Add("password", "password");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [Password] ([password_1], [password_2], [password_3], [password_4], [" +
-                "password_5], [password_6]) VALUES (@password_1, @password_2, @password_3, @passw" +
-                "ord_4, @password_5, @password_6)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [Password] ([password]) VALUES (@password)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@password_1", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "password_1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@password_2", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "password_2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@password_3", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "password_3", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@password_4", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "password_4", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@password_5", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "password_5", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@password_6", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "password_6", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@password", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2793,8 +2619,7 @@ SELECT nim, nama, sudahpilih FROM DPT WHERE (nim = @nim)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT password_1, password_2, password_3, password_4, password_5, password_6 FRO" +
-                "M Password";
+            this._commandCollection[0].CommandText = "SELECT password\r\nFROM Password";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2855,42 +2680,12 @@ SELECT nim, nama, sudahpilih FROM DPT WHERE (nim = @nim)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string password_1, string password_2, string password_3, string password_4, string password_5, string password_6) {
-            if ((password_1 == null)) {
-                throw new global::System.ArgumentNullException("password_1");
+        public virtual int Insert(string password) {
+            if ((password == null)) {
+                throw new global::System.ArgumentNullException("password");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(password_1));
-            }
-            if ((password_2 == null)) {
-                throw new global::System.ArgumentNullException("password_2");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(password_2));
-            }
-            if ((password_3 == null)) {
-                throw new global::System.ArgumentNullException("password_3");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(password_3));
-            }
-            if ((password_4 == null)) {
-                throw new global::System.ArgumentNullException("password_4");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(password_4));
-            }
-            if ((password_5 == null)) {
-                throw new global::System.ArgumentNullException("password_5");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(password_5));
-            }
-            if ((password_6 == null)) {
-                throw new global::System.ArgumentNullException("password_6");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(password_6));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(password));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3031,36 +2826,14 @@ SELECT nim, nama, sudahpilih FROM DPT WHERE (nim = @nim)";
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Pilihan";
             tableMapping.ColumnMappings.Add("prodi", "prodi");
-            tableMapping.ColumnMappings.Add("pilihan_2", "pilihan_2");
-            tableMapping.ColumnMappings.Add("pilihan_1", "pilihan_1");
+            tableMapping.ColumnMappings.Add("pilihan", "pilihan");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Pilihan] WHERE (([prodi] = @Original_prodi) AND ([pillihan_1] " +
-                "= @Original_pillihan_1) AND ([pilihan_2] = @Original_pilihan_2))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_prodi", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "prodi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pillihan_1", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pillihan_1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pilihan_2", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pilihan_2", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [Pilihan] ([prodi], [pilihan_2], [pilihan_1]) VALUES (@prodi, @piliha" +
-                "n_2, @pilihan_1)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [Pilihan] ([prodi], [pilihan]) VALUES (@prodi, @pilihan)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@prodi", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "prodi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pilihan_2", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pilihan_2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pilihan_1", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pilihan_1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Pilihan] SET [prodi] = @prodi, [pillihan_1] = @pillihan_1, [pilihan_2] = @pilihan_2 WHERE (([prodi] = @Original_prodi) AND ([pillihan_1] = @Original_pillihan_1) AND ([pilihan_2] = @Original_pilihan_2));
-SELECT prodi, pillihan_1, pilihan_2 FROM Pilihan WHERE (prodi = @prodi)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@prodi", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "prodi", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pillihan_1", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pillihan_1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pilihan_2", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pilihan_2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_prodi", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "prodi", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pillihan_1", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pillihan_1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pilihan_2", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pilihan_2", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pilihan", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pilihan", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3076,7 +2849,7 @@ SELECT prodi, pillihan_1, pilihan_2 FROM Pilihan WHERE (prodi = @prodi)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT prodi, pilihan_2, pilihan_1 FROM Pilihan";
+            this._commandCollection[0].CommandText = "SELECT prodi, pilihan FROM Pilihan";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -3169,9 +2942,9 @@ FROM (SELECT prodi, COUNT(pilihan_2) as jumlahNomor1
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual System.Data.DataTable GetDataByPreferensi1() {
+        public virtual DBPemiraDataSet.PilihanDataTable GetDataByPreferensi1() {
             this.Adapter.SelectCommand = this.CommandCollection[1];
-            System.Data.DataTable dataTable = new System.Data.DataTable();
+            DBPemiraDataSet.PilihanDataTable dataTable = new DBPemiraDataSet.PilihanDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -3193,9 +2966,9 @@ FROM (SELECT prodi, COUNT(pilihan_2) as jumlahNomor1
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual System.Data.DataTable GetDataByPreferensi2() {
+        public virtual DBPemiraDataSet.PilihanDataTable GetDataByPreferensi2() {
             this.Adapter.SelectCommand = this.CommandCollection[2];
-            System.Data.DataTable dataTable = new System.Data.DataTable();
+            DBPemiraDataSet.PilihanDataTable dataTable = new DBPemiraDataSet.PilihanDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -3232,64 +3005,19 @@ FROM (SELECT prodi, COUNT(pilihan_2) as jumlahNomor1
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_prodi, string Original_pillihan_1, string Original_pilihan_2) {
-            if ((Original_prodi == null)) {
-                throw new global::System.ArgumentNullException("Original_prodi");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_prodi));
-            }
-            if ((Original_pillihan_1 == null)) {
-                throw new global::System.ArgumentNullException("Original_pillihan_1");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_pillihan_1));
-            }
-            if ((Original_pilihan_2 == null)) {
-                throw new global::System.ArgumentNullException("Original_pilihan_2");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_pilihan_2));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string prodi, string pilihan_2, string pilihan_1) {
+        public virtual int Insert(string prodi, string pilihan) {
             if ((prodi == null)) {
                 throw new global::System.ArgumentNullException("prodi");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(prodi));
             }
-            if ((pilihan_2 == null)) {
-                throw new global::System.ArgumentNullException("pilihan_2");
+            if ((pilihan == null)) {
+                throw new global::System.ArgumentNullException("pilihan");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(pilihan_2));
-            }
-            if ((pilihan_1 == null)) {
-                throw new global::System.ArgumentNullException("pilihan_1");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(pilihan_1));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(pilihan));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3303,63 +3031,6 @@ FROM (SELECT prodi, COUNT(pilihan_2) as jumlahNomor1
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string prodi, string pillihan_1, string pilihan_2, string Original_prodi, string Original_pillihan_1, string Original_pilihan_2) {
-            if ((prodi == null)) {
-                throw new global::System.ArgumentNullException("prodi");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(prodi));
-            }
-            if ((pillihan_1 == null)) {
-                throw new global::System.ArgumentNullException("pillihan_1");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(pillihan_1));
-            }
-            if ((pilihan_2 == null)) {
-                throw new global::System.ArgumentNullException("pilihan_2");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(pilihan_2));
-            }
-            if ((Original_prodi == null)) {
-                throw new global::System.ArgumentNullException("Original_prodi");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_prodi));
-            }
-            if ((Original_pillihan_1 == null)) {
-                throw new global::System.ArgumentNullException("Original_pillihan_1");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_pillihan_1));
-            }
-            if ((Original_pilihan_2 == null)) {
-                throw new global::System.ArgumentNullException("Original_pilihan_2");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_pilihan_2));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
         }

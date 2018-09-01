@@ -49,15 +49,14 @@
             this.btnImportDP = new System.Windows.Forms.Button();
             this.expKotakSuara = new System.Windows.Forms.Button();
             this.btnExportDP = new System.Windows.Forms.Button();
-            this.btnExpPerProdi = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnExit = new System.Windows.Forms.Button();
             this.belumImportLbl = new System.Windows.Forms.Label();
             this.sudahImportLbl = new System.Windows.Forms.Label();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -81,7 +80,7 @@
             // 
             this.txtNIM.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNIM.Location = new System.Drawing.Point(339, 59);
-            this.txtNIM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNIM.Margin = new System.Windows.Forms.Padding(4);
             this.txtNIM.Name = "txtNIM";
             this.txtNIM.Size = new System.Drawing.Size(380, 40);
             this.txtNIM.TabIndex = 1;
@@ -90,7 +89,7 @@
             // 
             this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmit.Location = new System.Drawing.Point(739, 58);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(4);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(131, 41);
             this.btnSubmit.TabIndex = 2;
@@ -105,7 +104,7 @@
             this.panel1.Controls.Add(this.listViewWL);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Location = new System.Drawing.Point(16, 161);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(343, 382);
             this.panel1.TabIndex = 3;
@@ -114,7 +113,7 @@
             // 
             this.btnClearWL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearWL.Location = new System.Drawing.Point(53, 337);
-            this.btnClearWL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClearWL.Margin = new System.Windows.Forms.Padding(4);
             this.btnClearWL.Name = "btnClearWL";
             this.btnClearWL.Size = new System.Drawing.Size(100, 28);
             this.btnClearWL.TabIndex = 15;
@@ -130,7 +129,7 @@
             this.columnHeader1});
             this.listViewWL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewWL.Location = new System.Drawing.Point(87, 57);
-            this.listViewWL.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewWL.Margin = new System.Windows.Forms.Padding(4);
             this.listViewWL.Name = "listViewWL";
             this.listViewWL.Size = new System.Drawing.Size(167, 273);
             this.listViewWL.TabIndex = 14;
@@ -161,7 +160,7 @@
             this.panel2.Controls.Add(this.listViewBlk1);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Location = new System.Drawing.Point(368, 161);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(343, 382);
             this.panel2.TabIndex = 4;
@@ -169,7 +168,7 @@
             // btnGrantAccBlk1
             // 
             this.btnGrantAccBlk1.Location = new System.Drawing.Point(237, 71);
-            this.btnGrantAccBlk1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGrantAccBlk1.Margin = new System.Windows.Forms.Padding(4);
             this.btnGrantAccBlk1.Name = "btnGrantAccBlk1";
             this.btnGrantAccBlk1.Size = new System.Drawing.Size(100, 44);
             this.btnGrantAccBlk1.TabIndex = 17;
@@ -181,7 +180,7 @@
             // 
             this.btnClearBlk1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearBlk1.Location = new System.Drawing.Point(48, 165);
-            this.btnClearBlk1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClearBlk1.Margin = new System.Windows.Forms.Padding(4);
             this.btnClearBlk1.Name = "btnClearBlk1";
             this.btnClearBlk1.Size = new System.Drawing.Size(100, 28);
             this.btnClearBlk1.TabIndex = 16;
@@ -195,7 +194,7 @@
             this.listViewBlk1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listViewBlk1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewBlk1.Location = new System.Drawing.Point(48, 57);
-            this.listViewBlk1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewBlk1.Margin = new System.Windows.Forms.Padding(4);
             this.listViewBlk1.Name = "listViewBlk1";
             this.listViewBlk1.Size = new System.Drawing.Size(181, 101);
             this.listViewBlk1.TabIndex = 16;
@@ -221,7 +220,7 @@
             this.panel3.Controls.Add(this.listViewBlk2);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Location = new System.Drawing.Point(720, 161);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(343, 382);
             this.panel3.TabIndex = 5;
@@ -229,7 +228,7 @@
             // btnGrantAccBlk2
             // 
             this.btnGrantAccBlk2.Location = new System.Drawing.Point(237, 71);
-            this.btnGrantAccBlk2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGrantAccBlk2.Margin = new System.Windows.Forms.Padding(4);
             this.btnGrantAccBlk2.Name = "btnGrantAccBlk2";
             this.btnGrantAccBlk2.Size = new System.Drawing.Size(100, 44);
             this.btnGrantAccBlk2.TabIndex = 18;
@@ -241,7 +240,7 @@
             // 
             this.btnClearBlk2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearBlk2.Location = new System.Drawing.Point(49, 165);
-            this.btnClearBlk2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClearBlk2.Margin = new System.Windows.Forms.Padding(4);
             this.btnClearBlk2.Name = "btnClearBlk2";
             this.btnClearBlk2.Size = new System.Drawing.Size(100, 28);
             this.btnClearBlk2.TabIndex = 17;
@@ -255,7 +254,7 @@
             this.listViewBlk2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listViewBlk2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewBlk2.Location = new System.Drawing.Point(49, 57);
-            this.listViewBlk2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewBlk2.Margin = new System.Windows.Forms.Padding(4);
             this.listViewBlk2.Name = "listViewBlk2";
             this.listViewBlk2.Size = new System.Drawing.Size(184, 101);
             this.listViewBlk2.TabIndex = 17;
@@ -276,7 +275,7 @@
             // btnImportDP
             // 
             this.btnImportDP.Location = new System.Drawing.Point(4, 48);
-            this.btnImportDP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnImportDP.Margin = new System.Windows.Forms.Padding(4);
             this.btnImportDP.Name = "btnImportDP";
             this.btnImportDP.Size = new System.Drawing.Size(151, 64);
             this.btnImportDP.TabIndex = 6;
@@ -288,45 +287,32 @@
             // 
             this.expKotakSuara.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.expKotakSuara.Location = new System.Drawing.Point(9, 46);
-            this.expKotakSuara.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.expKotakSuara.Margin = new System.Windows.Forms.Padding(4);
             this.expKotakSuara.Name = "expKotakSuara";
             this.expKotakSuara.Size = new System.Drawing.Size(151, 64);
             this.expKotakSuara.TabIndex = 7;
-            this.expKotakSuara.Text = "Export Kotak Suara";
+            this.expKotakSuara.Text = "Export Hasil Referendum";
             this.expKotakSuara.UseVisualStyleBackColor = true;
             this.expKotakSuara.Click += new System.EventHandler(this.expKotakSuara_Click);
             // 
             // btnExportDP
             // 
             this.btnExportDP.Location = new System.Drawing.Point(448, 46);
-            this.btnExportDP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportDP.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportDP.Name = "btnExportDP";
             this.btnExportDP.Size = new System.Drawing.Size(151, 64);
             this.btnExportDP.TabIndex = 8;
-            this.btnExportDP.Text = "Export DP";
+            this.btnExportDP.Text = "Export Daftar Pemilih";
             this.btnExportDP.UseVisualStyleBackColor = true;
             this.btnExportDP.Click += new System.EventHandler(this.btnExportDP_Click);
-            // 
-            // btnExpPerProdi
-            // 
-            this.btnExpPerProdi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExpPerProdi.Location = new System.Drawing.Point(168, 46);
-            this.btnExpPerProdi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnExpPerProdi.Name = "btnExpPerProdi";
-            this.btnExpPerProdi.Size = new System.Drawing.Size(151, 64);
-            this.btnExpPerProdi.TabIndex = 9;
-            this.btnExpPerProdi.Text = "Export Kotak Suara Per Prodi";
-            this.btnExpPerProdi.UseVisualStyleBackColor = true;
-            this.btnExpPerProdi.Click += new System.EventHandler(this.btnExpPerProdi_Click);
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.btnExpPerProdi);
             this.panel4.Controls.Add(this.btnExportDP);
             this.panel4.Controls.Add(this.expKotakSuara);
             this.panel4.Location = new System.Drawing.Point(460, 554);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(608, 117);
             this.panel4.TabIndex = 10;
@@ -335,7 +321,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Perpetua Titling MT", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(159, 5);
+            this.label2.Location = new System.Drawing.Point(244, 1);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(118, 29);
@@ -360,35 +346,10 @@
             this.panel5.Controls.Add(this.btnImportDP);
             this.panel5.Controls.Add(this.sudahImportLbl);
             this.panel5.Location = new System.Drawing.Point(16, 554);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(425, 117);
             this.panel5.TabIndex = 12;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::NewPemira.Properties.Resources.LOGO_PEMIRA4;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(17, 4);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(175, 154);
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnExit
-            // 
-            this.btnExit.FlatAppearance.BorderColor = System.Drawing.Color.Red;
-            this.btnExit.FlatAppearance.BorderSize = 5;
-            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(996, 4);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(72, 43);
-            this.btnExit.TabIndex = 14;
-            this.btnExit.Text = "EXIT";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // belumImportLbl
             // 
@@ -417,13 +378,38 @@
             this.sudahImportLbl.Text = "Sudah Import Daftar Pemilih";
             this.sudahImportLbl.Visible = false;
             // 
+            // btnExit
+            // 
+            this.btnExit.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.btnExit.FlatAppearance.BorderSize = 5;
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.Location = new System.Drawing.Point(996, 4);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(72, 43);
+            this.btnExit.TabIndex = 14;
+            this.btnExit.Text = "EXIT";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::NewPemira.Properties.Resources.KongresLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(16, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(148, 142);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1076, 684);
-            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -433,10 +419,11 @@
             this.Controls.Add(this.txtNIM);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Server";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -464,7 +451,6 @@
         private System.Windows.Forms.Button btnImportDP;
         private System.Windows.Forms.Button expKotakSuara;
         private System.Windows.Forms.Button btnExportDP;
-        private System.Windows.Forms.Button btnExpPerProdi;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
@@ -472,7 +458,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnClearWL;
         private System.Windows.Forms.ListView listViewWL;
         private System.Windows.Forms.ListView listViewBlk1;
@@ -485,6 +470,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.Label sudahImportLbl;
         private System.Windows.Forms.Label belumImportLbl;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

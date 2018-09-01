@@ -18,7 +18,7 @@ namespace NewPemira
         DBPilihanController dbPilihan = new DBPilihanController();
         const int MAX_QUEUE_BILIK_1 = 2;
         const int MAX_QUEUE_BILIK_2 = 2;
-        const int N_PASSWORD = 6;
+        const int N_PASSWORD = 1;
         List<string> password = new List<string>();
 
         string myIp = "169.254.1.1";
@@ -188,14 +188,12 @@ namespace NewPemira
                     // else put into waiting list
                 else 
                 {
-                    
+
                     listViewWL.Items.Add(item);
                 }
-                
                 txtNIM.Clear();
             }
-
-            updateBtnStats();
+           updateBtnStats();
         } 
 
         private void clearListView(int id)
@@ -224,8 +222,14 @@ namespace NewPemira
         private void updateBtnStats()
         {
             btnClearWL.Enabled = (listViewWL.Items.Count > 0);
-            btnClearBlk1.Enabled = (listViewBlk1.Items.Count > 0);
-            btnClearBlk2.Enabled = (listViewBlk2.Items.Count > 0);
+            if (btnGrantAccBlk1.Enabled == true)
+            {
+                btnClearBlk1.Enabled = (listViewBlk1.Items.Count > 0);
+            }
+            if (btnGrantAccBlk2.Enabled == true)
+            {
+                btnClearBlk2.Enabled = (listViewBlk2.Items.Count > 0);
+            }
         }
 
         private void enableClearBilik(int id)
@@ -294,9 +298,9 @@ namespace NewPemira
             dbDPT.setSudahPilih(nim);
         }
 
-        private void acceptVote(string prodi, string pil1, string pil2)
+        private void acceptVote(string prodi, string pilihan)
         {
-            dbPilihan.tambahPilihanKM(prodi, pil1, pil2);
+            dbPilihan.tambahPilihanKM(prodi, pilihan);
         }
 
         private void AddRemainingWLTo(int id)
@@ -331,10 +335,9 @@ namespace NewPemira
             Action<int> addremwlto = AddRemainingWLTo;
             Action<int> clearlistview = clearListView;
             Action<string> setPilih = setSudahPilih;
-            Action<string, string, string> tambahPilihan = acceptVote;
+            Action<string, string> tambahPilihan = acceptVote;
             Action updBtn = updateBtnStats;
 
-            
             Invoke(disableGrant, 1);
             Invoke(disableClear, 1);
             string nim = (string)_nim;
@@ -352,11 +355,14 @@ namespace NewPemira
                 Console.WriteLine("Message received : " + msg);
                 // TODO update database 
                 // kemungkinan 1,2 / 1,2
-                String[] tokens = msg.Split(',');
-                string prodi = nim.Substring(0, 3);
-                Invoke(tambahPilihan, prodi, tokens[0], tokens[1]);
-                Console.WriteLine("Pref1 : " + tokens[0] + " Pref2 : " + tokens[1]);
-                Invoke(setPilih, nim);
+                if (!msg.Equals("ERROR"))
+                {
+                    String[] tokens = msg.Split(',');
+                    string prodi = nim.Substring(0, 3);
+                    Invoke(tambahPilihan, prodi, tokens[0]);
+                    Console.WriteLine("Pref1 : " + tokens[0] + " Pref2 : " + tokens[1]);
+                    Invoke(setPilih, nim);
+                }
                 Invoke(clearlistview, 1);
             } catch (Exception ex)
             {
@@ -367,8 +373,7 @@ namespace NewPemira
                 Invoke(enableGrant, 1);
                 Invoke(enableClear, 1);
                 Invoke(updBtn);
-            }
-        
+            }        
         }
 
         private void processNIMBilik_2(Object _nim)
@@ -381,10 +386,8 @@ namespace NewPemira
             Action<int> addremwlto = AddRemainingWLTo;
             Action<int> clearlistview = clearListView;
             Action<string> setPilih = setSudahPilih;
-            Action<string, string, string> tambahPilihan = acceptVote;
+            Action<string, string> tambahPilihan = acceptVote;
             Action updBtn = updateBtnStats;
-
-            
 
             Invoke(disableGrant, 2);
             Invoke(disableClear, 2);
@@ -403,11 +406,14 @@ namespace NewPemira
                 Console.WriteLine("Message received : " + msg);
                 // TODO update database 
                 // kemungkinan 1,2 / 1,x / dst
-                String[] tokens = msg.Split(',');
-                string prodi = nim.Substring(0, 3);
-                Invoke(tambahPilihan, prodi, tokens[0], tokens[1]);
-                Console.WriteLine("Pref1 : " + tokens[0] + " Pref2 : " + tokens[1]);
-                Invoke(setPilih, nim);
+                if (!msg.Equals("ERROR"))
+                {
+                    String[] tokens = msg.Split(',');
+                    string prodi = nim.Substring(0, 3);
+                    Invoke(tambahPilihan, prodi, tokens[0]);
+                    Console.WriteLine("Pref1 : " + tokens[0] + " Pref2 : " + tokens[1]);
+                    Invoke(setPilih, nim);
+                }
                 Invoke(clearlistview, 2);
             }
             catch (Exception ex)
@@ -502,50 +508,12 @@ namespace NewPemira
                     var folder = new FolderBrowserDialog();
                     if (folder.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
-                        string exportname = "K3MResults.csv";
+                        string exportname = "HasilReferendumK3M2018.csv";
 
                         string selectedPath = folder.SelectedPath;
                         string msg = "";
                         string pathDp = selectedPath + @"\" + exportname;
                         if (dbPilihan.exportCSVPilihanKM(pathDp))
-                        {
-                            msg += "Export Successful!\n";
-                            msg += "File Exported to: " + selectedPath + "\n";
-                            msg += "File name: " + exportname;
-                        }
-                        MessageBox.Show(msg);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Password yang Anda Masukan Salah");
-                }
-            }
-        }
-
-        // Belum di implementasi
-        private void btnExpPerProdi_Click(object sender, EventArgs e)
-        {
-            ValidateExport validate = new ValidateExport();
-            validate.ShowDialog();
-            bool check = false;
-            if (!validate.getCancel())
-            {
-                check = dbPass.checkPassword(validate.getPassword());
-                if (check)
-                {
-                    PilihExport pil = new PilihExport();
-                    pil.ShowDialog();
-                    int pilihan = pil.getSelected();
-                    var fd = new FolderBrowserDialog();
-                    if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    {
-                        string exportname = "K3MResultsPreferensi"+ pilihan +".csv";
-
-                        string selectedPath = fd.SelectedPath;
-                        string msg = "";
-                        string pathDp = selectedPath + @"\" + exportname;
-                        if (dbPilihan.exportCSVPilihanKMPreferensi(pathDp, pilihan))
                         {
                             msg += "Export Successful!\n";
                             msg += "File Exported to: " + selectedPath + "\n";
@@ -579,6 +547,21 @@ namespace NewPemira
                 }
                 MessageBox.Show(msg);
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
         // === IMPORT AND EXPORT DATABASE === //

@@ -45,22 +45,6 @@ namespace NewPemira
             {
                 errormsg += "Password 1 Tidak Boleh Kosong\n";
             }
-            if (textBox2.Text == "")
-            {
-                errormsg += "Password 2 Tidak Boleh Kosong\n";
-            }
-            if (textBox3.Text == "")
-            {
-                errormsg += "Password 3 Tidak Boleh Kosong\n";
-            }
-            if (textBox4.Text == "")
-            {
-                errormsg += "Password 4 Tidak Boleh Kosong\n";
-            }
-            if (textBox5.Text == "")
-            {
-                errormsg += "Password 5 Tidak Boleh Kosong\n";
-            }
 
             if (errormsg != "")
             {
@@ -68,12 +52,13 @@ namespace NewPemira
             } else
             {
                 password.Add(textBox1.Text);
-                password.Add(textBox2.Text);
-                password.Add(textBox3.Text);
-                password.Add(textBox4.Text);
-                password.Add(textBox5.Text);
                 this.Close();
             }
+        }
+
+        private void ValidateExport_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

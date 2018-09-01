@@ -76,7 +76,7 @@ namespace NewPemira
             {
                 byte[] b = new byte[100];
                 int k = mySocket.Receive(b);
-                Console.WriteLine("Recieved...");
+                Console.WriteLine("Received...");
                 msg = "";
                 for (int i = 0; i < k; i++)
                     msg += Convert.ToChar(b[i]);
