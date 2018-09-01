@@ -79,6 +79,7 @@ namespace PemiraClient
                 Invoke(showLabel, hub_operator, false);
 
                 Invoke(setLabelText, label_NIM, response.value);
+                //Invoke(setLabelText, label_NIM, "13515000");
                 Invoke(showLabel, label_NIM, true);
 
                 bool sessionExpired = false;
@@ -111,12 +112,14 @@ namespace PemiraClient
                                 break;
                             case State.CONFIRMATION_1_OVER_2:
                                 new Thread(triggerTimerInOverview).Start();
+                                Invoke(showLabel, label_timer_options_1, false);
                                 Invoke(showLabel, label_timer_options_2, false);
                                 Invoke(setTimerLocation, rightBottom);
                                 Invoke(showLabel, label_timer_overview, true);
                                 break;
                             case State.CONFIRMATION_2_OVER_1:
                                 new Thread(triggerTimerInOverview).Start();
+                                Invoke(showLabel, label_timer_options_1, false);
                                 Invoke(showLabel, label_timer_options_2, false);
                                 Invoke(setTimerLocation, rightBottom);
                                 Invoke(showLabel, label_timer_overview, true);
@@ -170,11 +173,21 @@ namespace PemiraClient
         private void triggerTimerInOptions()
         {
             Action<Label, string> UpdateTimer = _setLabelText;
+            Action<string> ShowWarningDialog = _showWarningDialog;
 
             bool isAbstain = true;
-
-            for (int i = 20; i >= 0; i--)
+            
+            
+            for (int i = 60; i >= 0; i--)
             {
+                if (i == 30)
+                {
+                    Invoke(ShowWarningDialog, "Pilih dong, plisss :'");
+                }   
+                else if (i == 10)
+                {
+                    Invoke(ShowWarningDialog, "Ayo dong, plisss :'");
+                }
                 Invoke(UpdateTimer, label_timer_options_1, i.ToString());
                 Thread.Sleep(1000);
                 isAbstain = label_timer_options_1.Visible;
@@ -182,6 +195,13 @@ namespace PemiraClient
             }
 
             if (isAbstain) state.switchState(State.CONFIRMATION_ABSTAIN);
+        }
+
+        private void _showWarningDialog(string warningMessage)
+        {
+            WarningDialog warningDialog = new WarningDialog();
+            warningDialog.setLabelText(warningMessage);
+            warningDialog.ShowDialog();
         }
 
         private void triggerTimerInOptions2()

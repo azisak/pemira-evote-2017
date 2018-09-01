@@ -77,6 +77,12 @@
       <DependentUpon>RedoWarning.cs</DependentUpon>
     </Compile>
     <Compile Include="State.cs" />
+    <Compile Include="WarningDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WarningDialog.Designer.cs">
+      <DependentUpon>WarningDialog.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="PasswordDialog.resx">
       <DependentUpon>PasswordDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,6 +104,9 @@
     </Compile>
     <EmbeddedResource Include="RedoWarning.resx">
       <DependentUpon>RedoWarning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WarningDialog.resx">
+      <DependentUpon>WarningDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -153,6 +162,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo_pemira4_472_icon.ico" />
+    <None Include="Resources\validasi-turun.png" />
+    <None Include="Resources\validasi-lanjut.png" />
+    <None Include="Resources\validasi-abstain.png" />
+    <None Include="Resources\thanks.png" />
+    <None Include="Resources\pilihan-turun.png" />
+    <None Include="Resources\pilihan-lanjut.png" />
+    <None Include="Resources\pilihan-default.png" />
+    <None Include="Resources\instruktur.png" />
+    <None Include="Resources\welcome.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
